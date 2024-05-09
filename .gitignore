@@ -1,4 +1,6 @@
-sb_todolist
+localbackup_todolist
+localbackup_todolist.rar
+
 venv
 *.pyc
 __pycache__
