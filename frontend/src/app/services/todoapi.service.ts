@@ -16,6 +16,10 @@ export class TodoapiService {
   constructor(private http: HttpClient) {  }
 
   getAllTasks(): Observable <any> {
-    return this.http.get(this.baseurl + '/todolist/', {headers: this.httpHeaders})
+    return this.http.get(this.baseurl + '/todolist/', {headers: this.httpHeaders});
+  }
+
+  getOneTask(id: number): Observable <any> {
+    return this.http.get(this.baseurl + `/todolist/${id}`, {headers: this.httpHeaders});
   }
 }

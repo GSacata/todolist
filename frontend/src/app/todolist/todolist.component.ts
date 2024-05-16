@@ -28,6 +28,16 @@ export class TodolistComponent {
     })
   }
 
+  getOneTask(task: TodoTask) {
+    this.todoapi.getOneTask(task.id).subscribe({
+      next: (data) => {
+        this.selectedTask = data
+      },
+      error: (err) => { console.log(err) },
+      complete: () => { console.log(`Success: GET task ${task.id}`) }
+    })
+  }
+
   constructor (private todoapi: TodoapiService) {
     this.getAllTasks()
   }
