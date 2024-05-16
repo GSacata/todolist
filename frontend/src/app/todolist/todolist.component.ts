@@ -16,6 +16,7 @@ import { AppModule } from '../app.module';
 
 export class TodolistComponent {
   task = MOCKTASKLIST;
+  selectedTask: any;
 
   getAllTasks() {
     this.todoapi.getAllTasks().subscribe({
