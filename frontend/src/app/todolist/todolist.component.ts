@@ -61,6 +61,15 @@ export class TodolistComponent {
     })
   }
 
+  deleteTask(task: TodoTask) {
+    this.todoapi.deleteTask(task.id).subscribe({
+      next: () => {
+        this.refreshTasks();
+      }
+    })
+  }
+
+
   refreshTasks() {
     this.getAllTasks();
     this.selectedTask = {id: "", task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""}
