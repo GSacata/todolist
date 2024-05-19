@@ -46,8 +46,19 @@ export class TodolistComponent {
       error: (err) => { console.log(err) },
       complete: () => { console.log(`Success: PUT edited task ${task.id}`) }
     }),
-    
     this.refreshTasks();
+  }
+
+  createTask(task: TodoTask) {
+    this.todoapi.createTask(this.selectedTask).subscribe({
+      next: (data) => {
+        // this.task.push(data)
+        data = this.selectedTask
+        this.refreshTasks();
+      },
+      error: (err) => { console.log(err) },
+      complete: () => { console.log(`Success: POST created task ${task.id}`) }
+    })
   }
 
   refreshTasks() {
