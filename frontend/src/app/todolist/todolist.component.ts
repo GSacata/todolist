@@ -40,5 +40,6 @@ export class TodolistComponent {
 
   constructor (private todoapi: TodoapiService) {
     this.getAllTasks()
+    this.selectedTask = {task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""}
   }
 }
