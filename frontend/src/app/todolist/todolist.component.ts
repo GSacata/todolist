@@ -38,7 +38,45 @@ export class TodolistComponent {
     })
   }
 
+  editTask(task: TodoTask) {
+    this.todoapi.editTask(this.selectedTask).subscribe({
+      next: (data) => {
+        this.task = this.selectedTask
+      },
+      error: (err) => { console.log(err) },
+      complete: () => { console.log(`Success: PUT edited task ${task.id}`) }
+    }),
+    this.refreshTasks();
+  }
+
+  createTask(task: TodoTask) {
+    this.todoapi.createTask(this.selectedTask).subscribe({
+      next: (data) => {
+        // this.task.push(data)
+        data = this.selectedTask
+        this.refreshTasks();
+      },
+      error: (err) => { console.log(err) },
+      complete: () => { console.log(`Success: POST created task ${task.id}`) }
+    })
+  }
+
+  deleteTask(task: TodoTask) {
+    this.todoapi.deleteTask(task.id).subscribe({
+      next: () => {
+        this.refreshTasks();
+      }
+    })
+  }
+
+
+  refreshTasks() {
+    this.getAllTasks();
+    this.selectedTask = {id: "", task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""}
+  }
+
   constructor (private todoapi: TodoapiService) {
     this.getAllTasks()
+    this.selectedTask = {task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""}
   }
 }
