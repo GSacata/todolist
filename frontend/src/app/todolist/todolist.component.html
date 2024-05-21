@@ -1,12 +1,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-<p>preenchendo</p>
-
-<p>todolist works!</p>
-
-<ul *ngFor="let item of task">
+<!-- <ul *ngFor="let item of task">
     <li>{{item.task_title}}; <span (click)="getOneTask(item)">|||GET ONE|||</span></li>
-    <!-- <li>{{item.task_title}};</li> -->
 </ul>
 
 <div>
@@ -21,11 +16,11 @@
     <button (click)="editTask(selectedTask)">PUT</button>
     <button (click)="createTask(selectedTask)">POST</button>
     <button (click)="deleteTask(selectedTask)">DEL</button>
-</div>
+</div> -->
 
 
 
-<!-- <section>
+<section>
     <div class="tdlst-body-div">
         <h1 class="tdlst-main-title">To Do List</h1>
         <div class="tdlst-crud">
@@ -40,7 +35,6 @@
                             <span>ID: {{selectedTask.id}}</span><br>
                             <span>Created at: {{selectedTask.task_created_at}}</span><br>
                             <span>Updated at: {{selectedTask.task_updated_at}}</span><br>
-                            <span>Updated at: {{selectedTask.task_updated_at}}</span><br>
                         </p>
                     </div>
                 </div>
@@ -48,10 +42,10 @@
             <table>
                 <tbody>
                     <tr class="tdlst-crud-buttonsdiv">
-                        <td><button class="tdlst-button tdlst-refresh" (click)="refreshCrud()">EMPTY</button></td>
-                        <td><button class="tdlst-button tdlst-create" (click)="createTask()">POST</button></td>
-                        <td><button class="tdlst-button tdlst-edit" (click)="editTask()">PUT</button></td>
-                        <td><button class="tdlst-button tdlst-delete" (click)="deleteTask()">DELETE</button></td>
+                        <td><button class="tdlst-button tdlst-refresh" (click)="refreshTasks()">EMPTY</button></td>
+                        <td><button class="tdlst-button tdlst-create" (click)="createTask(selectedTask)">POST</button></td>
+                        <td><button class="tdlst-button tdlst-edit" (click)="editTask(selectedTask)">PUT</button></td>
+                        <td><button class="tdlst-button tdlst-delete" (click)="deleteTask(selectedTask)">DELETE</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -86,9 +80,8 @@
     <div class="tdlst-body-div">
         <div class="tdlst-ending">
             <p>
-                Application made as a programming test to Datacake.<br>
                 Made by GSacata.
             </p>
         </div>
     </div>
-</section> -->
+</section>
