@@ -3,6 +3,7 @@ import { MOCKTASKLIST } from '../misc/mock_todotasks';
 import { TodoTask } from '../models/todotask';
 import { TodoapiService } from '../services/todoapi.service';
 import { AppModule } from '../app.module';
+declare var $: any;
 
 @Component({
   selector: 'app-todolist',
@@ -17,6 +18,10 @@ import { AppModule } from '../app.module';
 export class TodolistComponent {
   task = MOCKTASKLIST;
   selectedTask: any;
+
+  alertsDone() {
+    alert("Task is done");
+  }
 
   getAllTasks() {
     this.todoapi.getAllTasks().subscribe({

@@ -20,7 +20,7 @@
 
 
 
-<section>
+<!-- <section>
     <div class="tdlst-body-div">
         <h1 class="tdlst-main-title">To Do List</h1>
         <div class="tdlst-crud">
@@ -71,6 +71,54 @@
                     </div>
                 </div>
                 <div class="tdlst-task-edit" (click)="getOneTask(item)">
+                    <span class="material-symbols-outlined">edit_note</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="tdlst-body-div">
+        <div class="tdlst-ending">
+            <p>
+                Made by GSacata.
+            </p>
+        </div>
+    </div>
+</section> -->
+
+
+<section>
+    <div class="tdlst-body-div">
+        <h1 class="tdlst-main-title">To Do List</h1>
+        <div>
+            <div>
+                <input type="text" [(ngModel)]="selectedTask.task_title" placeholder="Title">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="tdlst-body-div">
+        <h1 class="tdlst-main-title">Remaining tasks</h1>
+        <div class="tdlst-task" *ngFor="let item of task">
+            <div class="tdlst-task-body">
+                <div class="tdlst-task-notdone" *ngIf="item.task_completion == false">
+                    <span class="material-symbols-outlined">radio_button_unchecked</span>
+                </div>
+                <div class="tdlst-task-done" *ngIf="item.task_completion == true" (click)="alertsDone()">
+                    <span class="material-symbols-outlined">radio_button_checked</span>
+                </div>
+                <div class="tdlst-task-textbody">
+                    <input type="text" [(ngModel)]="item.task_title" placeholder="Title">
+                    <div class="tdlst-task-addinfo">
+                        <p>ID: {{item.id}}</p>
+                        <p>Created at: {{item.task_created_at}}</p>
+                        <p>Updated at: {{item.task_updated_at}}</p>
+                    </div>
+                </div>
+                <div class="tdlst-task-edit" (click)="getOneTask(item)">
+                    <span class="material-symbols-outlined">edit_note</span>
+                </div>
+                <div class="tdlst-task-delete" (click)="getOneTask(item)">
                     <span class="material-symbols-outlined">edit_note</span>
                 </div>
             </div>
