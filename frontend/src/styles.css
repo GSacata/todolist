@@ -206,13 +206,19 @@ td {
     color: var(--icon-color);
 }
 
+.task-body {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+}
+
 .task-title {
     width: 100%;
 }
 
 .task-details {
+    display: none;
+    background-color: transparent;
     box-sizing: border-box;
-    background-color: var(--primary-color);
     border-radius: 0px 0px 10px 10px;
     padding: 1rem;
 }

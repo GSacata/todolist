@@ -15,7 +15,7 @@
     </div>
     <br>
     <div class="list-body">
-        <div *ngFor="let item of task">
+        <div *ngFor="let item of task" class="task-body">
             <div class="titlebar">
                 <div class="task-mainicon task-notdone" *ngIf="item.task_completion == false">
                     <span class="material-symbols-outlined">radio_button_unchecked</span>
