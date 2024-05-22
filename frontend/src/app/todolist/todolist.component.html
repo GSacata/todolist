@@ -111,10 +111,14 @@
                 <div class="task-title flex-to-column">
                     <input type="text" [(ngModel)]="item.task_title" placeholder="Title">
                     <div class="task-details">
-                        <p>ID: {{item.id}}</p>
+                        <input type="text" [(ngModel)]="item.task_description" placeholder="Description">
                         <div class="flex-to-row">
                             <p>Created at: {{item.task_created_at}}</p>
                             <p>Updated at: {{item.task_updated_at}}</p>
+                        </div>
+                        <div class="flex-to-row">
+                            <button>Save</button>
+                            <button>Cancel</button>
                         </div>
                     </div>
                 </div>
