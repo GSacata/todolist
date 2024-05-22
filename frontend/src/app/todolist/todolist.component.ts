@@ -43,8 +43,8 @@ export class TodolistComponent {
     })
   }
 
-  editTask(task: TodoTask) {
-    this.todoapi.editTask(this.selectedTask).subscribe({
+  editTaskBody(task: TodoTask) {
+    this.todoapi.editTaskBody(this.selectedTask).subscribe({
       next: (data) => {
         this.task = this.selectedTask
       },

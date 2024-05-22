@@ -17,18 +17,4 @@ declare var $: any;
 
 export class AppComponent {
   title = 'frontend';
-
-  ngOnInit(): void {
-    $(document).ready(() => {
-      alert("Tem jquery");
-    });
-  }
 }
-
-// export class AppComponent implements OnInit {
-//   ngOnInit(): void {
-//     $(document).ready(() => {
-//       alert("Tem jquery");
-//     });
-//   }
-// }
