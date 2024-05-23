@@ -19,8 +19,8 @@ export class TodolistComponent {
   task = MOCKTASKLIST;
   selectedTask: any;
 
-  alertsDone() {
-    alert("Task is done");
+  showTaskDetails(id: number) {
+    $(`#task-${id} > div.task-details`).toggle();
   }
 
   getAllTasks() {
@@ -44,14 +44,15 @@ export class TodolistComponent {
   }
 
   editTaskBody(task: TodoTask) {
-    this.todoapi.editTaskBody(this.selectedTask).subscribe({
-      next: (data) => {
-        this.task = this.selectedTask
-      },
-      error: (err) => { console.log(err) },
-      complete: () => { console.log(`Success: PUT edited task ${task.id}`) }
-    }),
-    this.refreshTasks();
+    this.showTaskDetails(task.id);
+    // this.todoapi.editTaskBody(this.selectedTask).subscribe({
+    //   next: (data) => {
+    //     this.task = this.selectedTask
+    //   },
+    //   error: (err) => { console.log(err) },
+    //   complete: () => { console.log(`Success: PUT edited task ${task.id}`) }
+    // }),
+    // this.refreshTasks();
   }
 
   createTask(task: TodoTask) {
@@ -73,7 +74,6 @@ export class TodolistComponent {
       }
     })
   }
-
 
   refreshTasks() {
     this.getAllTasks();

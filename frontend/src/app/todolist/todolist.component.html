@@ -7,7 +7,7 @@
             <div class="flex-to-row">
                 <input class="task-title-input" type="text" [(ngModel)]="selectedTask.task_title" placeholder="Title">
                 <div class="align-btn-to-r">
-                    <button>Save</button>
+                    <button (click)="createTask(selectedTask)">Save</button>
                     <button>Cancel</button>
                 </div>
             </div>
@@ -15,12 +15,12 @@
     </div>
     <br>
     <div class="list-body">
-        <div *ngFor="let item of task" class="task-body">
+        <div *ngFor="let item of task" class="task-body" id="task-{{item.id}}">
             <div class="titlebar">
                 <div class="task-mainicon task-notdone" *ngIf="item.task_completion == false">
                     <span class="material-symbols-outlined">radio_button_unchecked</span>
                 </div>
-                <div class="task-mainicon task-done" *ngIf="item.task_completion == true" (click)="alertsDone()">
+                <div class="task-mainicon task-done" *ngIf="item.task_completion == true">
                     <span class="material-symbols-outlined">radio_button_checked</span>
                 </div>
                 <div>
@@ -28,10 +28,10 @@
                         <input class="task-title-input" type="text" [(ngModel)]="item.task_title" placeholder="Title">
                     </div>
                 </div>
-                <div class="task-sideicon" (click)="editTaskBody(item)">
+                <div class="task-sideicon taskicon-edit" (click)="editTaskBody(item)">
                     <span class="material-symbols-outlined">edit_note</span>
                 </div>
-                <div class="task-sideicon" (click)="deleteTask(item)">
+                <div class="task-sideicon taskicon-delete" (click)="deleteTask(item)">
                     <span class="material-symbols-outlined">delete</span>
                 </div>
             </div>
