@@ -2,11 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
 
 :root {
-    --primary: #C4E8FB;
-    --prim-green: #CDFBC4;
+    --primary-color: #C4E8FB;
+    /* --prim-green: #CDFBC4;
     --prim-purple: #F2C4FB;
-    --prim-orange: #FBD6C4;
-    --secondary: #0C6A9B;
+    --prim-orange: #FBD6C4; */
+    --secondary-color: #0C6A9B;
+    --font-color: #000000;
+    --icon-color: #736000;
 }
 /* <uniquifier>: Use a unique and descriptive class name
 <weight>: Use a value from 100 to 1000 */
@@ -42,13 +44,17 @@
 
 body {
     /* background-color: var(--primary); */
-    background-color: #DEFFFD;
+    background-color: #FFFFFF;
     /* background-image: linear-gradient(45deg, #FFFFEA, #FFFFB7); */
 }
 
-p, h1, div, textarea {
+p, h1, div, textarea, input {
     font-family: "Roboto Flex", sans-serif;
-    color: var(--secondary);
+    color: var(--font-color);
+}
+
+p, div, textarea, input {
+    font-size: 16px;
 }
 
 table {
@@ -58,6 +64,26 @@ table {
 
 td {
     width: 25%;
+}
+
+.task-title-input,
+.task-desc-input {
+    background-color: transparent;
+    border: none;
+}
+
+.task-title-input:focus-visible,
+.task-title-input:focus-visible {
+    background-color: var(--icon-color);
+    border: none;
+}
+
+.task-title-input {
+    width: 400px;
+}
+
+.task-desc-input {
+    width: 100%;
 }
 
 .tdlst-main-title {
@@ -71,9 +97,9 @@ td {
 }
 
 .tdlst-crud {
-    border: solid 2px var(--secondary);
+    border: solid 2px var(--font-color);
     border-radius: 15px;
-    background-color: var(--primary);
+    background-color: var(--primary-color);
     /* box-shadow: 0px 2px 10px 2px #00527c; */
 }
 
@@ -107,12 +133,12 @@ td {
     margin-right: 2rem;
 }
 
-.tdlst-crud-tasktitle {
+/* .tdlst-crud-tasktitle {
     width: 100%;
     background-color: #e6f5fd;
-    color: var(--secondary);
+    color: var(--font-color);
     border-radius: 3px;
-    border: solid 1px var(--secondary);
+    border: solid 1px var(--font-color);
     margin-bottom: 1rem;
     line-height: 2;
 }
@@ -120,12 +146,12 @@ td {
 .tdlst-crud-taskdesc {
     width: 100%;
     background-color: #e6f5fd;
-    color: var(--secondary);
+    color: var(--font-color);
     border-radius: 3px;
-    border: solid 1px var(--secondary);
+    border: solid 1px var(--font-color);
     height: 80px;
     text-wrap: wrap;
-}
+} */
 
 .tdlst-crud-buttonsdiv {
     text-align: center;
@@ -154,35 +180,73 @@ td {
     background-color: var(--prim-orange);
 }
 
-.tdlst-task-body {
+.titlebar {
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
-    border: solid 2px var(--secondary);
+    border: solid 2px var(--font-color);
     border-radius: 10px;
-    margin: 1rem 0rem;
-    background-color: var(--primary);
-    /* box-shadow: 0px 2px 10px 2px #00527c; */
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: var(--secondary-color);
+    width: 100%;
 }
 
-.tdlst-task-notdone,
-.tdlst-task-done,
-.tdlst-task-details,
-.tdlst-task-edit {
+.task-mainicon {
     width: 10%;
     text-align: center;
-    margin: 1rem 0rem;
+    margin: 0rem;
+    color: var(--icon-color);
 }
 
-.tdlst-task-textbody {
+.task-sideicon {
+    width: 5%;
+    text-align: center;
+    margin: 0rem;
+    color: var(--icon-color);
+}
+
+.task-body {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+}
+
+.task-title {
+    width: 100%;
+}
+
+.task-details {
+    display: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    border-radius: 0px 0px 10px 10px;
+    padding: 1rem;
+}
+
+.ending {
+    text-align: center;
+}
+
+.flex-to-column {
     display: flex;
     flex-direction: column;
-    width: 80%;
 }
 
-.tdlst-task-addinfo {
-    display: none;
+.flex-to-row {
+    display: flex;
+    flex-direction: row;
 }
 
-.tdlst-ending {
-    text-align: center;
+.align-btn-to-l {
+    margin-right: auto;
+}
+
+.align-btn-to-r {
+    margin-left: auto;
+}
+
+.list-body {
+    width: 100%;
+    max-width: 700px;
+    margin: 2rem auto;
 }

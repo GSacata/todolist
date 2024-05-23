@@ -3,6 +3,7 @@ import { MOCKTASKLIST } from '../misc/mock_todotasks';
 import { TodoTask } from '../models/todotask';
 import { TodoapiService } from '../services/todoapi.service';
 import { AppModule } from '../app.module';
+declare var $: any;
 
 @Component({
   selector: 'app-todolist',
@@ -17,6 +18,10 @@ import { AppModule } from '../app.module';
 export class TodolistComponent {
   task = MOCKTASKLIST;
   selectedTask: any;
+
+  showTaskDetails(id: number) {
+    $(`#task-${id} > div.task-details`).toggle();
+  }
 
   getAllTasks() {
     this.todoapi.getAllTasks().subscribe({
@@ -38,15 +43,16 @@ export class TodolistComponent {
     })
   }
 
-  editTask(task: TodoTask) {
-    this.todoapi.editTask(this.selectedTask).subscribe({
-      next: (data) => {
-        this.task = this.selectedTask
-      },
-      error: (err) => { console.log(err) },
-      complete: () => { console.log(`Success: PUT edited task ${task.id}`) }
-    }),
-    this.refreshTasks();
+  editTaskBody(task: TodoTask) {
+    this.showTaskDetails(task.id);
+    // this.todoapi.editTaskBody(this.selectedTask).subscribe({
+    //   next: (data) => {
+    //     this.task = this.selectedTask
+    //   },
+    //   error: (err) => { console.log(err) },
+    //   complete: () => { console.log(`Success: PUT edited task ${task.id}`) }
+    // }),
+    // this.refreshTasks();
   }
 
   createTask(task: TodoTask) {
@@ -68,7 +74,6 @@ export class TodolistComponent {
       }
     })
   }
-
 
   refreshTasks() {
     this.getAllTasks();
