@@ -21,6 +21,8 @@ export class TodolistComponent {
 
   showTaskDetails(id: number) {
     $(`#task-${id} > div.task-details`).toggle();
+    $(`#task-${id} > div.titlebar > div:nth-child(2) > div > span`).toggle();
+    $(`#task-${id} > div.titlebar > div:nth-child(2) > div > input`).toggle();
   }
 
   getAllTasks() {

@@ -79,6 +79,12 @@ td {
 }
 
 .task-title-input {
+    display: none;
+    width: 400px;
+}
+
+.task-title-para {
+    display: block;
     width: 400px;
 }
 
