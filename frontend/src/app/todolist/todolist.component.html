@@ -29,7 +29,10 @@
                         <input class="task-title-input" type="text" [(ngModel)]="item.task_title" placeholder="Title">
                     </div>
                 </div>
-                <div class="task-sideicon taskicon-edit" (click)="editTaskBody(item)">
+                <div class="task-sideicon taskicon-edit" (click)="showTaskDetails(item.id)">
+                    <span class="material-symbols-outlined">edit_note</span>
+                </div>
+                <div class="task-sideicon taskicon-closeedit" (click)="hideTaskDetails(item.id)">
                     <span class="material-symbols-outlined">edit_note</span>
                 </div>
                 <div class="task-sideicon taskicon-delete" (click)="deleteTask(item)">
@@ -43,8 +46,8 @@
                     <p>Updated at: {{item.task_updated_at}}</p>
                 </div>
                 <div class="flex-to-row">
-                    <button>Save</button>
-                    <button>Cancel</button>
+                    <button (click)="editTaskBody(item)">Save</button>
+                    <button (click)="cancelEditTaskBody(item)">Cancel</button>
                 </div>
             </div>
         </div>

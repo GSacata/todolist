@@ -23,6 +23,16 @@ export class TodolistComponent {
     $(`#task-${id} > div.task-details`).toggle();
     $(`#task-${id} > div.titlebar > div:nth-child(2) > div > span`).toggle();
     $(`#task-${id} > div.titlebar > div:nth-child(2) > div > input`).toggle();
+    $(`#task-1 > div.titlebar > div.task-sideicon.taskicon-edit`).toggle();
+    $(`#task-1 > div.titlebar > div.task-sideicon.taskicon-closeedit`).toggle();
+  }
+
+  hideTaskDetails(id: number) {
+    $(`#task-${id} > div.task-details`).toggle();
+    $(`#task-${id} > div.titlebar > div:nth-child(2) > div > span`).toggle();
+    $(`#task-${id} > div.titlebar > div:nth-child(2) > div > input`).toggle();
+    $(`#task-1 > div.titlebar > div.task-sideicon.taskicon-edit`).toggle();
+    $(`#task-1 > div.titlebar > div.task-sideicon.taskicon-closeedit`).toggle();
   }
 
   getAllTasks() {
@@ -37,24 +47,29 @@ export class TodolistComponent {
 
   getOneTask(task: TodoTask) {
     this.todoapi.getOneTask(task.id).subscribe({
-      next: (data) => {
-        this.selectedTask = data
-      },
+      // next: (data) => {
+      //   this.selectedTask = data
+      // },
+      next: () => {  },
       error: (err) => { console.log(err) },
       complete: () => { console.log(`Success: GET task ${task.id}`) }
     })
   }
 
   editTaskBody(task: TodoTask) {
-    this.showTaskDetails(task.id);
-    // this.todoapi.editTaskBody(this.selectedTask).subscribe({
-    //   next: (data) => {
-    //     this.task = this.selectedTask
-    //   },
-    //   error: (err) => { console.log(err) },
-    //   complete: () => { console.log(`Success: PUT edited task ${task.id}`) }
-    // }),
-    // this.refreshTasks();
+    this.todoapi.editTaskBody(task).subscribe({
+      next: (data) => {
+        task = data
+      },
+      error: (err) => { console.log(err) },
+      complete: () => { console.log(`Success: PUT edited task ${task.id}`) }
+    }),
+    this.hideTaskDetails(task.id);
+  }
+
+  cancelEditTaskBody(task: TodoTask) {
+    this.hideTaskDetails(task.id);
+    this.getOneTask(task);
   }
 
   createTask(task: TodoTask) {
@@ -80,6 +95,12 @@ export class TodolistComponent {
   refreshTasks() {
     this.getAllTasks();
     this.selectedTask = {id: "", task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""}
+  }
+
+  refreshThisTask(task: TodoTask) {
+    // this.selectedTask = {id: "", task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""}
+    this.getOneTask(task);
+
   }
 
   constructor (private todoapi: TodoapiService) {
