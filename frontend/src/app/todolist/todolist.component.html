@@ -8,7 +8,7 @@
                 <input class="task-title-input" type="text" [(ngModel)]="selectedTask.task_title" placeholder="Title">
                 <div class="align-btn-to-r">
                     <button (click)="createTask(selectedTask)">Save</button>
-                    <button>Cancel</button>
+                    <button (click)="refreshTasks()">Cancel</button>
                 </div>
             </div>
         </div>
