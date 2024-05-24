@@ -47,10 +47,7 @@ export class TodolistComponent {
 
   getOneTask(task: TodoTask) {
     this.todoapi.getOneTask(task.id).subscribe({
-      // next: (data) => {
-      //   this.selectedTask = data
-      // },
-      next: () => {  },
+      next: (data) => { task = data },
       error: (err) => { console.log(err) },
       complete: () => { console.log(`Success: GET task ${task.id}`) }
     })
@@ -69,7 +66,6 @@ export class TodolistComponent {
 
   cancelEditTaskBody(task: TodoTask) {
     this.hideTaskDetails(task.id);
-    this.getOneTask(task);
   }
 
   createTask(task: TodoTask) {
@@ -98,7 +94,6 @@ export class TodolistComponent {
   }
 
   refreshThisTask(task: TodoTask) {
-    // this.selectedTask = {id: "", task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""}
     this.getOneTask(task);
 
   }

@@ -5,7 +5,7 @@
         <h1 class="tdlst-main-title">To Do List</h1>
         <div class="titlebar">
             <div class="flex-to-row">
-                <input class="task-title-input" type="text" [(ngModel)]="selectedTask.task_title" placeholder="Title">
+                <input class="task-create-title-input" type="text" [(ngModel)]="selectedTask.task_title" placeholder="Title">
                 <div class="align-btn-to-r">
                     <button (click)="createTask(selectedTask)">Save</button>
                     <button (click)="refreshTasks()">Cancel</button>
