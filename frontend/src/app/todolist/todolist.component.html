@@ -17,10 +17,10 @@
     <div class="list-body">
         <div *ngFor="let item of task" class="task-body" id="task-{{item.id}}">
             <div class="titlebar">
-                <div class="task-mainicon task-notdone" *ngIf="item.task_completion == false">
+                <div class="task-mainicon task-notdone" *ngIf="item.task_completion == false" (click)="markAsDone(item)">
                     <span class="material-symbols-outlined">radio_button_unchecked</span>
                 </div>
-                <div class="task-mainicon task-done" *ngIf="item.task_completion == true">
+                <div class="task-mainicon task-done" *ngIf="item.task_completion == true" (click)="markAsNotDone(item)">
                     <span class="material-symbols-outlined">radio_button_checked</span>
                 </div>
                 <div>

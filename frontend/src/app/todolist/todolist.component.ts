@@ -95,7 +95,26 @@ export class TodolistComponent {
 
   refreshThisTask(task: TodoTask) {
     this.getOneTask(task);
+  }
 
+  markAsDone(task: TodoTask) {
+    this.todoapi.editTaskBody(task).subscribe({
+      next: () => {
+        task.task_completion = true
+      },
+      error: (err) => { console.log(err) },
+      complete: () => { console.log(`Success: PUT edited task ${task.id}`) }
+    })
+  }
+
+  markAsNotDone(task: TodoTask) {
+    this.todoapi.editTaskBody(task).subscribe({
+      next: () => {
+        task.task_completion = false
+      },
+      error: (err) => { console.log(err) },
+      complete: () => { console.log(`Success: PUT edited task ${task.id}`) }
+    })
   }
 
   constructor (private todoapi: TodoapiService) {
