@@ -289,8 +289,21 @@ td {
     border: solid 2px var(--primary-color);
     border-radius: 10px;
     background-color: var(--secondary-color);
+    padding: 0.5rem;
 }
 
-.center-elements {
+.generic-centertext {
     text-align: center;
+}
+
+.popup-canceltask-btns {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: fit-content;
+}
+
+.btn-confirm,
+.btn-cancel {
+    margin: 0 0.5rem;
 }

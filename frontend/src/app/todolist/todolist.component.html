@@ -7,8 +7,8 @@
             <div class="flex-to-row">
                 <input class="task-create-title-input" type="text" [(ngModel)]="selectedTask.task_title" placeholder="Title">
                 <div class="align-btn-to-r">
-                    <button (click)="createTask(selectedTask)">Save</button>
-                    <button (click)="refreshTasks()">Cancel</button>
+                    <button (click)="createTask(selectedTask)" class="btn-confirm">Save</button>
+                    <button (click)="refreshTasks()" class="btn-cancel">Cancel</button>
                 </div>
             </div>
         </div>
@@ -65,11 +65,11 @@
 <div class="popup-body" id="popup-canceltask">
     <!-- <div class="popup-shade" (click)="cancelDeleteTask()"> -->
     <div class="popup-shade">
-        <div class="popup-canceltask-body">
-            <p>Deleting '{{selectedTask.task_title}}'. Are you sure?</p>
-            <div class="flex-to-row center-elements">
-                <button (click)="deleteTask(selectedTask)">Yes</button>
-                <button (click)="cancelDeleteTask()">No</button>
+        <div class="popup-canceltask-body generic-centertext">
+            <p>Deleting '{{selectedTask.task_title}}'.<br>Are you sure?</p>
+            <div class="flex-to-row popup-canceltask-btns">
+                <button (click)="deleteTask(selectedTask)" class="btn-confirm">Yes</button>
+                <button (click)="cancelDeleteTask()"  class="btn-cancel">No</button>
             </div>
         </div>
     </div>
