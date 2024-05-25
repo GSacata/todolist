@@ -63,11 +63,14 @@
 </section>
 
 <div class="popup-body" id="popup-canceltask">
-    <div class="popup-canceltask-body">
-        <p>Deleting '{{selectedTask.task_title}}'. Are you sure?</p>
-        <div class="flex-to-row">
-            <button (click)="deleteTask(selectedTask)">Yes</button>
-            <button (click)="cancelDeleteTask()">No</button>
+    <!-- <div class="popup-shade" (click)="cancelDeleteTask()"> -->
+    <div class="popup-shade">
+        <div class="popup-canceltask-body">
+            <p>Deleting '{{selectedTask.task_title}}'. Are you sure?</p>
+            <div class="flex-to-row center-elements">
+                <button (click)="deleteTask(selectedTask)">Yes</button>
+                <button (click)="cancelDeleteTask()">No</button>
+            </div>
         </div>
     </div>
 </div>

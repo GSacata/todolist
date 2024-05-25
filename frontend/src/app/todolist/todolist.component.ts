@@ -98,11 +98,12 @@ export class TodolistComponent {
       }
     })
     $(`#popup-canceltask`).toggle();
+    // this.selectedTask = {task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""};
   }
 
   cancelDeleteTask() {
-    this.selectedTask = {task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""};
     $(`#popup-canceltask`).toggle();
+    this.selectedTask = {task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""};
   }
 
   refreshTasks() {

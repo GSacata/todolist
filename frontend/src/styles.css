@@ -265,6 +265,32 @@ td {
     display: none;
 }
 
-.popup-body {
+#popup-canceltask {
     display: none;
+}
+
+.popup-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+}
+
+.popup-canceltask-body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 300px;
+    min-height: 100px;
+    border: solid 2px var(--primary-color);
+    border-radius: 10px;
+    background-color: var(--secondary-color);
+}
+
+.center-elements {
+    text-align: center;
 }
