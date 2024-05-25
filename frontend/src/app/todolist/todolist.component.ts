@@ -80,12 +80,30 @@ export class TodolistComponent {
     })
   }
 
+  queueToDeletion(task: TodoTask) {
+    $(`#popup-canceltask`).toggle();
+    this.todoapi.getOneTask(task.id).subscribe({
+      next: (data) => {
+        this.selectedTask = data
+      },
+      error: (err) => { console.log(err) },
+      complete: () => { console.log(`Success: Queued task ${task.id} to deletion.`) }
+    })
+  }
+
   deleteTask(task: TodoTask) {
     this.todoapi.deleteTask(task.id).subscribe({
       next: () => {
         this.refreshTasks();
       }
     })
+    $(`#popup-canceltask`).toggle();
+    // this.selectedTask = {task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""};
+  }
+
+  cancelDeleteTask() {
+    $(`#popup-canceltask`).toggle();
+    this.selectedTask = {task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""};
   }
 
   refreshTasks() {
