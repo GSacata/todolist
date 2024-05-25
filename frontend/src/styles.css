@@ -264,3 +264,7 @@ td {
 .taskicon-closeedit {
     display: none;
 }
+
+.popup-body {
+    display: none;
+}

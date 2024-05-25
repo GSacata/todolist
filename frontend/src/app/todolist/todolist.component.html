@@ -35,7 +35,7 @@
                 <div class="task-sideicon taskicon-closeedit" (click)="hideTaskDetails(item.id)">
                     <span class="material-symbols-outlined">edit_note</span>
                 </div>
-                <div class="task-sideicon taskicon-delete" (click)="deleteTask(item)">
+                <div class="task-sideicon taskicon-delete" (click)="queueToDeletion(item)">
                     <span class="material-symbols-outlined">delete</span>
                 </div>
             </div>
@@ -61,3 +61,13 @@
         </div>
     </div>
 </section>
+
+<div class="popup-body" id="popup-canceltask">
+    <div class="popup-canceltask-body">
+        <p>Deleting '{{selectedTask.task_title}}'. Are you sure?</p>
+        <div class="flex-to-row">
+            <button (click)="deleteTask(selectedTask)">Yes</button>
+            <button (click)="cancelDeleteTask()">No</button>
+        </div>
+    </div>
+</div>
