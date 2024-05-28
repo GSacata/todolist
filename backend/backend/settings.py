@@ -113,11 +113,15 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_L10N = True
+
+USE_TZ = False
+
+
 
 
 # Static files (CSS, JavaScript, Images)
@@ -134,3 +138,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
     "http://localhost:4200",
 ]
+
+REST_FRAMEWORK = {
+    'DATETIME_FORMAT': '%H:%M:%S %d/%m/%Y'
+}

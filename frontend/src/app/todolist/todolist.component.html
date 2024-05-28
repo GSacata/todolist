@@ -42,8 +42,8 @@
             <div class="task-details">
                 <input class="task-desc-input" type="text" [(ngModel)]="item.task_description" placeholder="Description">
                 <div class="flex-to-row">
-                    <p>Created at: {{item.task_created_at}}</p>
-                    <p>Updated at: {{item.task_updated_at}}</p>
+                    <p style="margin-right: auto;">Created at: {{item.task_created_at}}</p>
+                    <p style="margin-left: auto;">Updated at: {{item.task_updated_at}}</p>
                 </div>
                 <div class="flex-to-row">
                     <button (click)="editTaskBody(item)">Save</button>
