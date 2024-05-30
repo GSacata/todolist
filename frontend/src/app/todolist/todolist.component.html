@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="task-details">
-                <input class="task-desc-input" type="text" [(ngModel)]="item.task_description" placeholder="Description">
+                <textarea class="task-desc-input" type="text" [(ngModel)]="item.task_description" placeholder="Description" rows="4"></textarea>
                 <div class="flex-to-row">
                     <p style="margin-right: auto;">Created at: {{item.task_created_at}}</p>
                     <p style="margin-left: auto;">Updated at: {{item.task_updated_at}}</p>

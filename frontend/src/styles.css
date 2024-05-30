@@ -255,6 +255,8 @@ td {
     width: 100%;
     max-width: 700px;
     margin: 2rem auto;
+    max-height: 500px;
+    overflow-y: scroll;
 }
 
 .taskicon-edit {
