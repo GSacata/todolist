@@ -87,7 +87,7 @@ td {
 
 .task-title-para {
     display: block;
-    width: 400px;
+    width: 500px;
 }
 
 .task-desc-input {
@@ -163,6 +163,11 @@ td {
 
 .tdlst-crud-buttonsdiv {
     text-align: center;
+}
+
+.task-create-title-input {
+    width: 400px;
+    border-radius: 10px;
 }
 
 .tdlst-button {
