@@ -45,9 +45,9 @@
                     <p style="margin-right: auto;">Created at: {{item.task_created_at}}</p>
                     <p style="margin-left: auto;">Updated at: {{item.task_updated_at}}</p>
                 </div>
-                <div class="flex-to-row">
-                    <button (click)="editTaskBody(item)">Save</button>
-                    <button (click)="cancelEditTaskBody(item)">Cancel</button>
+                <div class="flex-to-row gen-centerelements">
+                    <button (click)="editTaskBody(item)" class="btn-confirm">Save</button>
+                    <button (click)="cancelEditTaskBody(item)" class="btn-cancel">Cancel</button>
                 </div>
             </div>
         </div>
