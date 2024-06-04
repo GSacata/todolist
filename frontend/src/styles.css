@@ -3,9 +3,6 @@
 
 :root {
     --color-primary: #C4E8FB;
-    /* --prim-green: #CDFBC4;
-    --prim-purple: #F2C4FB;
-    --prim-orange: #FBD6C4; */
     --color-secondary: #0C6A9B;
     --color-font: #000000;
     --color-icon: #ffe979;
@@ -14,8 +11,6 @@
 }
 /* <uniquifier>: Use a unique and descriptive class name
 <weight>: Use a value from 100 to 1000 */
-
-/* border: solid 1px #000000; DEV-ER */
 
 .roboto-flex {
   font-family: "Roboto Flex", sans-serif;
@@ -45,9 +40,7 @@
 }
 
 body {
-    /* background-color: var(--primary); */
     background-color: #FFFFFF;
-    /* background-image: linear-gradient(45deg, #FFFFEA, #FFFFB7); */
 }
 
 p, h1, div, textarea, input {
@@ -94,103 +87,13 @@ td {
     width: 100%;
 }
 
-.tdlst-main-title {
-    text-align: center;
-}
-
-.tdlst-body-div {
-    width: 100%;
-    max-width: 700px;
-    margin: 2rem auto;
-}
-
-.tdlst-crud {
-    border: solid 2px var(--color-font);
-    border-radius: 15px;
-    background-color: var(--color-primary);
-    /* box-shadow: 0px 2px 10px 2px #00527c; */
-}
-
-.tdlst-title-div {
-    width: 80%;
-    margin: 1rem auto;
-    text-align: center;
-    padding: 1rem;
-}
-
-.tdlst-crud-editbody-1 {
-    display: flex;
-    flex-direction: row;
-}
-
-.tdlst-crud-editbody-2 {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    line-height: 1.2;
-    font-size: 16px;
-    width: 100%;
-}
-
-.tdlst-crud-editbody-2 > input {
-    font-size: 16px;
-}
-
-.tdlst-crud-taskcompletion {
-    margin-bottom: auto;
-    margin-right: 2rem;
-}
-
-/* .tdlst-crud-tasktitle {
-    width: 100%;
-    background-color: #e6f5fd;
-    color: var(--color-font);
-    border-radius: 3px;
-    border: solid 1px var(--color-font);
-    margin-bottom: 1rem;
-    line-height: 2;
-}
-
-.tdlst-crud-taskdesc {
-    width: 100%;
-    background-color: #e6f5fd;
-    color: var(--color-font);
-    border-radius: 3px;
-    border: solid 1px var(--color-font);
-    height: 80px;
-    text-wrap: wrap;
-} */
-
-.tdlst-crud-buttonsdiv {
+.list-title {
     text-align: center;
 }
 
 .task-create-title-input {
     width: 400px;
     border-radius: 10px;
-}
-
-.tdlst-button {
-    margin: 1rem 0;
-    padding: 0.5rem;
-    border-radius: 10px;
-    width: 90%;
-}
-
-.tdlst-create {
-    background-color: var(--prim-green);
-}
-
-.tdlst-edit {
-    background-color: var(--prim-purple);
-}
-
-.tdlst-delete {
-    background-color: var(--prim-orange);
-}
-
-.tdlst-refresh {
-    background-color: var(--prim-orange);
 }
 
 .titlebar {
@@ -250,10 +153,6 @@ td {
     flex-direction: row;
 }
 
-.align-btn-to-l {
-    margin-right: auto;
-}
-
 .align-btn-to-r {
     margin-left: auto;
 }
@@ -301,7 +200,7 @@ td {
     padding: 0.5rem;
 }
 
-.generic-centertext {
+.gen-centertext {
     text-align: center;
 }
 
