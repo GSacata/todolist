@@ -14,7 +14,7 @@
         </div>
     </div>
     <br>
-    <div class="list-body">
+    <div class="list-body list-body-scroll">
         <div *ngFor="let item of task" class="task-body" id="task-{{item.id}}">
             <div class="titlebar">
                 <div class="task-mainicon task-notdone" *ngIf="item.task_completion == false" (click)="markAsDone(item)">
