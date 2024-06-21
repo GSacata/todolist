@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'todolist',
+    'email_mod',
     'corsheaders',
 ]
 
