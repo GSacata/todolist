@@ -2,13 +2,13 @@
 
 <section>
     <div>
-        <input type="text" placeholder="your@email.com">
-        <input type="text" placeholder="xxxx xxxx xxxx xxxx">
+        <input type="text" placeholder="your@email.com" [(ngModel)]="selectedEmail.email_address"><br>
+        <input type="text" placeholder="xxxx xxxx xxxx xxxx" [(ngModel)]="selectedEmail.email_password">
     </div>
     <div>
-        <button>Save and send test email</button>
+        <button (click)="editAndTestEmail(selectedEmail)">Save and send test email</button>
     </div>
-    <div *ngFor="let item of emailobj">
-        <p>{{item.email_address}}</p>
+    <div>
+        <p>{{selectedEmail.email_address}}</p>
     </div>
 </section>

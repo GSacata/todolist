@@ -25,6 +25,7 @@ def list_emails(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# @api_view(['GET', 'PUT', 'DELETE'])
 @api_view(['GET', 'PUT', 'DELETE'])
 def detail_email(request, pk):
     # Pega apenas uma tarefa, permite editar e deletar
@@ -39,11 +40,16 @@ def detail_email(request, pk):
         serializer = EmailModObjSerializer(email)
         return Response(serializer.data)
     
-    elif request.method == 'PUT':
+    if request.method == 'PUT':
         print("method PUT one email")
         serializer = EmailModObjSerializer(email, data=request.data)
         if serializer.is_valid():
             serializer.save()
+
+            def sent_test_email():
+                print(f"Sent test email")
+            sent_test_email()
+
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
