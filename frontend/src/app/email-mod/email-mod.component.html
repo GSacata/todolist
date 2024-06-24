@@ -3,7 +3,7 @@
 <section>
     <div>
         <input type="text" placeholder="your@email.com" [(ngModel)]="selectedEmail.email_address"><br>
-        <input type="text" placeholder="xxxx xxxx xxxx xxxx" [(ngModel)]="selectedEmail.email_password">
+        <input type="password" placeholder="xxxx xxxx xxxx xxxx" [(ngModel)]="selectedEmail.email_password">
     </div>
     <div>
         <button (click)="editAndTestEmail(selectedEmail)">Save and send test email</button>
