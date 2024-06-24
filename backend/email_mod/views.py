@@ -5,6 +5,9 @@ from rest_framework.response import Response
 
 from .models import EmailModObj
 from .serializers import EmailModObjSerializer
+
+import smtplib
+import email.message
 # Create your views here.
 
 @api_view(['GET', 'POST'])
@@ -31,23 +34,42 @@ def detail_email(request, pk):
     # Pega apenas uma tarefa, permite editar e deletar
 
     try:
-        email = EmailModObj.objects.get(pk=pk)
+        emailobj = EmailModObj.objects.get(pk=pk)
     except EmailModObj.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     
     if request.method == 'GET':
         print("method GET one email")
-        serializer = EmailModObjSerializer(email)
+        serializer = EmailModObjSerializer(emailobj)
         return Response(serializer.data)
     
     if request.method == 'PUT':
         print("method PUT one email")
-        serializer = EmailModObjSerializer(email, data=request.data)
+        serializer = EmailModObjSerializer(emailobj, data=request.data)
         if serializer.is_valid():
             serializer.save()
 
             def sent_test_email():
                 print(f"Sent test email")
+                corpo_email = """
+                <p>Email de teste</p>
+                <p>Enviado pelo seu todolist. DEV!!</p>
+                """
+
+                msg = email.message.Message()
+                msg['Subject'] = "Email de teste hardcoded"
+                msg['From'] = 'gsacata@gmail.com'
+                msg['To'] = 'gsacata@gmail.com'
+                password = 'cslc amxx erdi uxgu' # NÃO É A SENHA DO SEU EMAIL.
+                msg.add_header('Content-Type', 'text/html')
+                msg.set_payload(corpo_email)
+
+                s = smtplib.SMTP('smtp.gmail.com: 587')
+                s.starttls()
+                # Login Credentials for sending the mail
+                s.login(msg['From'], password)
+                s.sendmail(msg['From'], [msg['To']], msg.as_string().encode('utf-8'))
+                print('Email enviado')
             sent_test_email()
 
             return Response(serializer.data)
@@ -55,5 +77,5 @@ def detail_email(request, pk):
 
     elif request.method=='DELETE':
         print("method DELETE one email")
-        email.delete()
+        emailobj.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
