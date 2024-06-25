@@ -48,6 +48,16 @@ export class EmailModComponent {
     })
   }
 
+  sendReminderEmail(emailobj: EmailModObj) {
+    this.emailmodapi.sendReminderEmail(emailobj).subscribe({
+      next: (data) => {
+        data = this.selectedEmail
+      },
+      error: (err) => { console.log(err) },
+      complete: () => { console.log(`Success: POST sent reminder email`) }
+    })
+  }
+
   constructor (private emailmodapi: EmailmodapiService) {
     this.getAllEmailModObj();
     this.getOneEmailModObj(this.emailobj[0])

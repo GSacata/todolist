@@ -14,7 +14,7 @@ import json
 # Create your views here.
 
 @api_view(['GET', 'POST'])
-def list_emails(request):
+def list_and_send_reminder_email(request):
     if request.method == 'GET':
         print("method GET emails")
 
@@ -27,6 +27,13 @@ def list_emails(request):
         serializer = EmailModObjSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
+
+            print("preparing reminder email")
+
+            def send_reminder_email():
+                print("sent reminder email")
+            send_reminder_email()
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
