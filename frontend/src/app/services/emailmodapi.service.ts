@@ -23,8 +23,16 @@ export class EmailmodapiService {
 
   editAndTestEmail(emailobj: EmailModObj): Observable <any> {
     const body = {email_address: emailobj.email_address, email_password: emailobj.email_password, email_subject: emailobj.email_subject}
+    // return this.http.put(this.baseurl + `/email_mod/${emailobj.id}/sent_test_email/`, body, {headers: this.httpHeaders})
     return this.http.put(this.baseurl + `/email_mod/${emailobj.id}/`, body, {headers: this.httpHeaders})
   }
+
+  // GUARDANDO PARA SEND REMINDER
+  // editAndTestEmail(emailobj: EmailModObj): Observable <any> {
+  //   const body = {email_address: emailobj.email_address, email_password: emailobj.email_password, email_subject: emailobj.email_subject}
+  //   // return this.http.put(this.baseurl + `/email_mod/${emailobj.id}/sent_test_email/`, body, {headers: this.httpHeaders})
+  //   return this.http.post(this.baseurl + `/email_mod/sent_test_email/`, {headers: this.httpHeaders})
+  // }
 
   sendReminderEmail(emailobj: EmailModObj): Observable <any> {
     const body = {email_address: emailobj.email_address, email_password: emailobj.email_password, email_subject: emailobj.email_subject}

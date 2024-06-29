@@ -1,6 +1,7 @@
 from django.urls import path
 # from . import views
-from .views import ListEmailModObj, DetailChangeEmailModObj
+# from .views import ListEmailModObj, DetailChangeEmailModObj
+from .views import ListEmailModObj
 from rest_framework.routers import DefaultRouter
 
 # urlpatterns = [
@@ -12,5 +13,6 @@ from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register(r'', ListEmailModObj)
+# router.register(r'<pk:int>/', DetailChangeEmailModObj)
 
 urlpatterns = router.urls

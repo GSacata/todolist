@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from django.shortcuts import get_object_or_404
+from rest_framework.decorators import action
 
 from .models import EmailModObj
 from .serializers import EmailModObjSerializer
@@ -103,18 +104,13 @@ class ListEmailModObj(viewsets.ModelViewSet):
 
     def list(self, request):
         serializer = self.serializer_class(self.queryset, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def retrieve(self, request, pk=None):
         email = get_object_or_404(self.queryset, pk=pk)
         serializer = self.serializer_class(email)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
-
-class DetailChangeEmailModObj(viewsets.ModelViewSet):
-    queryset = EmailModObj.objects.all()
-    serializer_class = EmailModObjSerializer
-
+    
     def create(self, request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
@@ -123,12 +119,41 @@ class DetailChangeEmailModObj(viewsets.ModelViewSet):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-    def partial_update(self, request, pk=None):
-        email = get_object_or_404(self.queryset, pk=pk)
-        serializer = self.serializer_class(email, data=request.data, partial=True)
+    def update(self, request, pk=None):
+        emailobj = get_object_or_404(self.queryset, pk=pk)
+        serializer = self.serializer_class(emailobj, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             print('success update action')
+
+            print(f"Preparing test email")
+            # serializer = self.serializer_class(data=request.data)
+            content = JSONRenderer().render(serializer.data)
+            json_content = json.loads(content)
+
+            corpo_email = """
+            <p>Email de teste</p>
+            <p>Enviado pelo seu todolist. DEV!!</p>
+            """
+
+            # corpo_email = f"\n{serializer.data.keys},\n{serializer.data.values}"
+
+            msg = email.message.Message()
+            msg['Subject'] = "Test email from GSacata's Todolist"
+            msg['From'] = json_content["email_address"]
+            msg['To'] = json_content["email_address"]
+            password = json_content["email_password"]  # NÃO É A SENHA DO SEU EMAIL.
+            msg.add_header('Content-Type', 'text/html')
+            msg.set_payload(corpo_email)
+
+            s = smtplib.SMTP('smtp.gmail.com: 587')
+            s.starttls()
+            # Login Credentials for sending the mail
+            s.login(msg['From'], password)
+            s.sendmail(msg['From'], [msg['To']], msg.as_string().encode('utf-8'))
+
+            print(f'Email sent to {json_content["email_address"]}')
+            
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
@@ -137,4 +162,13 @@ class DetailChangeEmailModObj(viewsets.ModelViewSet):
         email.delete()
         print('success delete action')
         return Response(status=status.HTTP_204_NO_CONTENT)
-        
+    
+    @action(detail=False, methods=['post'])
+    def sent_test_email(self, request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            print(serializer.data)
+            print("custom POST funcionou")
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -44,9 +44,20 @@ export class EmailModComponent {
         emailobj = data
       },
       error: (err) => { console.log(err) },
-      complete: () => { console.log(`Success: PUT edited email ${emailobj.id}`) }
+      complete: () => { console.log(`Success: POST edited email`) }
     })
   }
+
+  // GUARDANDO PARA SEND REMINDER
+  // editAndTestEmail(emailobj: EmailModObj) {
+  //   this.emailmodapi.editAndTestEmail(emailobj).subscribe({
+  //     next: (data) => {
+  //       data = this.emailobj
+  //     },
+  //     error: (error) => { console.log(error) },
+  //     complete: () => { console.log("Success: GET all email objects") }
+  //   })
+  // }
 
   sendReminderEmail(emailobj: EmailModObj) {
     this.emailmodapi.sendReminderEmail(emailobj).subscribe({
