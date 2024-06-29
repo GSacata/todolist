@@ -3,13 +3,15 @@ import { MOCKTASKLIST } from '../misc/mock_todotasks';
 import { TodoTask } from '../models/todotask';
 import { TodoapiService } from '../services/todoapi.service';
 import { AppModule } from '../app.module';
+import { EmailModComponent } from '../email-mod/email-mod.component';
+import { EmailModObj } from '../models/emailobj';
 declare var $: any;
 
 @Component({
   selector: 'app-todolist',
   standalone: true,
   imports: [
-    AppModule
+    AppModule, EmailModComponent
   ],
   templateUrl: './todolist.component.html',
   styleUrl: './todolist.component.css'
@@ -18,6 +20,22 @@ declare var $: any;
 export class TodolistComponent {
   task = MOCKTASKLIST;
   selectedTask: any;
+  // items = ['item1', 'item2', 'item3', 'item4'];
+  items: EmailModObj;
+  // items: EmailModObj = { id: newItem.id, email_address: newItem.email_address, email_password: newItem.email_password, email_subject: newItem.email_subject };
+
+  addItem(newItem: EmailModObj) {
+    // this.items.push(newItem);
+    console.log("chamou addItem")
+    this.items = { id: newItem.id, email_address: newItem.email_address, email_password: newItem.email_password, email_subject: newItem.email_subject };
+    // this.items = {
+    //   id: newItem.id,
+    //   email_address: newItem.email_address,
+    //   email_password: newItem.email_password,
+    //   email_subject: newItem.email_subject
+    // }
+    console.log(this.items);
+  }
 
   showTaskDetails(id: number) {
     $(`#task-${id} > div.task-details`).toggle();
@@ -138,5 +156,6 @@ export class TodolistComponent {
   constructor (private todoapi: TodoapiService) {
     this.getAllTasks()
     this.selectedTask = {task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""}
+    this.items = { id: 0, email_address: "", email_password: "", email_subject: "" };
   }
 }

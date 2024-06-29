@@ -164,7 +164,7 @@ class ListEmailModObj(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
     
     @action(detail=False, methods=['post'])
-    def sent_test_email(self, request):
+    def send_reminder(self, request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             serializer.save()

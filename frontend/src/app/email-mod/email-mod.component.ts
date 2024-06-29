@@ -3,6 +3,7 @@ import { AppModule } from '../app.module';
 import { MOCKEMAILOBJ } from '../misc/mock_emailobj';
 import { EmailmodapiService } from '../services/emailmodapi.service';
 import { EmailModObj } from '../models/emailobj';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-email-mod',
@@ -17,6 +18,17 @@ import { EmailModObj } from '../models/emailobj';
 export class EmailModComponent {
   emailobj = MOCKEMAILOBJ;
   selectedEmail: any;
+
+  // @Output() newItemEvent = new EventEmitter<string>();
+  @Output() newItemEvent = new EventEmitter<EmailModObj>();
+
+  // addNewItem(value: string) {
+  //   this.newItemEvent.emit(value);
+  // }
+
+  addNewItem(value: EmailModObj) {
+    this.newItemEvent.emit({id: value.id, email_address: value.email_address, email_password: value.email_password, email_subject: value.email_subject});
+  }
 
   getAllEmailModObj() {
     this.emailmodapi.getAllEmailModObj().subscribe({
