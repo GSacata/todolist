@@ -53,7 +53,10 @@ export class EmailModComponent {
   editAndTestEmail(emailobj: EmailModObj) {
     this.emailmodapi.editAndTestEmail(emailobj).subscribe({
       next: (data) => {
-        emailobj = data
+        emailobj.id = data.id
+        emailobj.email_address = data.email_address
+        emailobj.email_password = data.email_password
+        emailobj.email_subject = "Test email"
       },
       error: (err) => { console.log(err) },
       complete: () => { console.log(`Success: POST edited email`) }

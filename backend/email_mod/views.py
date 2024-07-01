@@ -139,7 +139,8 @@ class ListEmailModObj(viewsets.ModelViewSet):
             # corpo_email = f"\n{serializer.data.keys},\n{serializer.data.values}"
 
             msg = email.message.Message()
-            msg['Subject'] = "Test email from GSacata's Todolist"
+            # msg['Subject'] = "Test email from GSacata's Todolist"
+            msg['Subject'] = json_content["email_subject"]
             msg['From'] = json_content["email_address"]
             msg['To'] = json_content["email_address"]
             password = json_content["email_password"]  # NÃO É A SENHA DO SEU EMAIL.
