@@ -22,12 +22,22 @@ export class TodolistComponent {
   selectedTask: any;
   // items = ['item1', 'item2', 'item3', 'item4'];
   items: EmailModObj;
+  reminderTask: any;
+  // reminderTask: TodoTask;
   // items: EmailModObj = { id: newItem.id, email_address: newItem.email_address, email_password: newItem.email_password, email_subject: newItem.email_subject };
 
-  addItem(newItem: EmailModObj) {
+  addItem(newItem: EmailModObj, task: TodoTask) {
     // this.items.push(newItem);
     console.log("chamou addItem")
-    this.items = { id: newItem.id, email_address: newItem.email_address, email_password: newItem.email_password, email_subject: newItem.email_subject };
+    this.items = { id: newItem.id, email_address: newItem.email_address, email_password: newItem.email_password, email_subject: task.task_title };
+    // this.reminderTask = this.getOneTask(task)
+    // this.todoapi.getOneTask(task.id).subscribe({
+    //   next: (data) => {
+    //     this.reminderTask = data
+    //   },
+    //   error: (err) => { console.log(err) },
+    //   complete: () => { console.log(`Success: Queued task ${task.id} to deletion.`) }
+    // })
     // this.items = {
     //   id: newItem.id,
     //   email_address: newItem.email_address,
@@ -35,6 +45,7 @@ export class TodolistComponent {
     //   email_subject: newItem.email_subject
     // }
     console.log(this.items);
+    console.log(this.selectedTask);
   }
 
   showTaskDetails(id: number) {
@@ -157,5 +168,6 @@ export class TodolistComponent {
     this.getAllTasks()
     this.selectedTask = {task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""}
     this.items = { id: 0, email_address: "", email_password: "", email_subject: "" };
+    this.reminderTask = {id: 0, task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""}
   }
 }
