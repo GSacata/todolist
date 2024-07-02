@@ -36,7 +36,7 @@ export class EmailmodapiService {
 
   sendReminderEmail(emailobj: EmailModObj): Observable <any> {
     const body = {email_address: emailobj.email_address, email_password: emailobj.email_password, email_subject: emailobj.email_subject}
-    return this.http.post(this.baseurl + `/email_mod/${emailobj.id}/send_reminder/`, body, {headers: this.httpHeaders})
+    return this.http.post(this.baseurl + `/email_mod/send_reminder/`, body, {headers: this.httpHeaders})
   }
   
 }

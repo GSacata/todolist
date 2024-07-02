@@ -171,5 +171,35 @@ class ListEmailModObj(viewsets.ModelViewSet):
             serializer.save()
             print(serializer.data)
             print("custom POST funcionou")
+
+            print(f"Preparing reminder email")
+            content = JSONRenderer().render(serializer.data)
+            json_content = json.loads(content)
+
+            # corpo_email = """
+            # <p>Email de teste</p>
+            # <p>Enviado pelo seu todolist. DEV!!</p>
+            # """
+
+            # corpo_email = f"\n{serializer.data.keys},\n{serializer.data.values}"
+
+            msg = email.message.Message()
+            # msg['Subject'] = "Test email from GSacata's Todolist"
+            msg['Subject'] = json_content["email_subject"]
+            msg['From'] = json_content["email_address"]
+            msg['To'] = json_content["email_address"]
+            password = json_content["email_password"]  # NÃO É A SENHA DO SEU EMAIL.
+            corpo_email = f'Reminder from \"TodoList\" to finish {json_content["email_subject"]}'
+            msg.add_header('Content-Type', 'text/html')
+            msg.set_payload(corpo_email)
+
+            s = smtplib.SMTP('smtp.gmail.com: 587')
+            s.starttls()
+            # Login Credentials for sending the mail
+            s.login(msg['From'], password)
+            s.sendmail(msg['From'], [msg['To']], msg.as_string().encode('utf-8'))
+
+            print(f'Email sent to {json_content["email_address"]}')
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
