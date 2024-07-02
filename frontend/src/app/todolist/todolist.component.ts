@@ -14,7 +14,8 @@ declare var $: any;
     AppModule, EmailModComponent
   ],
   templateUrl: './todolist.component.html',
-  styleUrl: './todolist.component.css'
+  styleUrl: './todolist.component.css',
+  providers: [EmailModComponent]
 })
 
 export class TodolistComponent {
@@ -25,6 +26,10 @@ export class TodolistComponent {
   reminderTask: any;
   // reminderTask: TodoTask;
   // items: EmailModObj = { id: newItem.id, email_address: newItem.email_address, email_password: newItem.email_password, email_subject: newItem.email_subject };
+
+  todoTaskSendReminderEmail(emailobj: EmailModObj) {
+    this.emailcomp.sendReminderEmail(emailobj);
+  }
 
   addItem(newItem: EmailModObj, task: TodoTask) {
     // this.items.push(newItem);
@@ -44,6 +49,7 @@ export class TodolistComponent {
     //   email_password: newItem.email_password,
     //   email_subject: newItem.email_subject
     // }
+    this.todoTaskSendReminderEmail(this.items);
     console.log(this.items);
     console.log(this.selectedTask);
   }
@@ -164,7 +170,7 @@ export class TodolistComponent {
     })
   }
 
-  constructor (private todoapi: TodoapiService) {
+  constructor (private todoapi: TodoapiService, private emailcomp: EmailModComponent) {
     this.getAllTasks()
     this.selectedTask = {task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""}
     this.items = { id: 0, email_address: "", email_password: "", email_subject: "" };

@@ -75,12 +75,15 @@ export class EmailModComponent {
   // }
 
   sendReminderEmail(emailobj: EmailModObj) {
-    this.emailmodapi.sendReminderEmail(emailobj).subscribe({
+    this.emailmodapi.editAndTestEmail(emailobj).subscribe({
       next: (data) => {
-        data = this.selectedEmail
+        emailobj.id = data.id
+        emailobj.email_address = data.email_address
+        emailobj.email_password = data.email_password
+        emailobj.email_subject = data.email_subject
       },
       error: (err) => { console.log(err) },
-      complete: () => { console.log(`Success: POST sent reminder email`) }
+      complete: () => { console.log(`Success: POST reminder email`) }
     })
   }
 
