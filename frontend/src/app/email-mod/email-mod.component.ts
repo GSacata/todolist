@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppModule } from '../app.module';
 import { MOCKEMAILOBJ } from '../misc/mock_emailobj';
 import { EmailmodapiService } from '../services/emailmodapi.service';
@@ -15,7 +15,7 @@ import { Output, EventEmitter } from '@angular/core';
   styleUrl: './email-mod.component.css'
 })
 
-export class EmailModComponent {
+export class EmailModComponent implements OnInit {
   emailobj = MOCKEMAILOBJ;
   selectedEmail: any;
 
@@ -26,8 +26,12 @@ export class EmailModComponent {
   //   this.newItemEvent.emit(value);
   // }
 
+  ngOnInit(): void {
+    this.selectedEmail = this.getOneEmailModObj(this.emailobj[0]);
+  }
+
   addNewItem(value: EmailModObj) {
-    this.newItemEvent.emit({id: value.id, email_address: value.email_address, email_password: value.email_password, email_subject: value.email_subject});
+    this.newItemEvent.emit(this.selectedEmail);
   }
 
   getAllEmailModObj() {

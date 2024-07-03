@@ -25,7 +25,7 @@ declare var $: any;
 export class TodolistComponent {
   task = MOCKTASKLIST;
   selectedTask: any;
-  tdtaskemail = MOCKEMAILOBJ;
+  tdtaskemail: EmailModObj;
   // items = ['item1', 'item2', 'item3', 'item4'];
   // items: any;
   // reminderTask: any;
@@ -36,10 +36,10 @@ export class TodolistComponent {
   //   this.emailcomp.sendReminderEmail(emailobj);
   // }
 
-  addItem(newItem: EmailModObj, task: TodoTask) {
+  addItem(newItem: EmailModObj) {
     // // this.items.push(newItem);
-    // console.log("chamou addItem")
-    // this.items = { id: newItem.id, email_address: newItem.email_address, email_password: newItem.email_password, email_subject: task.task_title };
+    console.log("chamou addItem")
+    this.tdtaskemail = { id: newItem.id, email_address: newItem.email_address, email_password: newItem.email_password, email_subject: newItem.email_subject };
     // // this.reminderTask = this.getOneTask(task)
     // // this.todoapi.getOneTask(task.id).subscribe({
     // //   next: (data) => {
@@ -55,12 +55,13 @@ export class TodolistComponent {
     // //   email_subject: newItem.email_subject
     // // }
     // // this.todoTaskSendReminderEmail(this.items);
-    // console.log(this.items);
+    console.log(this.tdtaskemail);
     // console.log(this.selectedTask);
   }
 
   getReminderEmail() {
     console.log(this.tdtaskemail)
+    this.addItem(this.tdtaskemail)
   }
 
   showTaskDetails(id: number) {
@@ -182,10 +183,12 @@ export class TodolistComponent {
   constructor (private todoapi: TodoapiService, private emailapi: EmailmodapiService) {
     this.getAllTasks()
     this.selectedTask = {task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""}
+    this.tdtaskemail = { id: 0, email_address: "", email_password: "", email_subject: "" };
+    // this.tdtaskemail = this.emailapi.getOneEmailModObj();
     // this.items = { id: 0, email_address: "", email_password: "", email_subject: "" };
     // this.items = this.emailapi.getOneEmailModObj;
     // this.reminderTask = {id: 0, task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""}
     // this.tdtaskemail = this.emailapi.getOneEmailModObj(this.emailapi.selectedEmail);
-    this.emailapi.getOneEmailModObj(this.tdtaskemail[0]);
+    // this.reminderTask = {id: 0, task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""}
   }
 }
