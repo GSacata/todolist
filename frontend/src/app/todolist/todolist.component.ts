@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { MOCKTASKLIST } from '../misc/mock_todotasks';
+import { MOCKEMAILOBJ } from '../misc/mock_emailobj';
 import { TodoTask } from '../models/todotask';
 import { TodoapiService } from '../services/todoapi.service';
 import { AppModule } from '../app.module';
 import { EmailModComponent } from '../email-mod/email-mod.component';
 import { EmailModObj } from '../models/emailobj';
+import { EmailmodapiService } from '../services/emailmodapi.service';
 declare var $: any;
 
 @Component({
@@ -15,43 +17,50 @@ declare var $: any;
   ],
   templateUrl: './todolist.component.html',
   styleUrl: './todolist.component.css',
-  providers: [EmailModComponent]
+  providers: [
+    EmailmodapiService
+  ]
 })
 
 export class TodolistComponent {
   task = MOCKTASKLIST;
   selectedTask: any;
+  tdtaskemail = MOCKEMAILOBJ;
   // items = ['item1', 'item2', 'item3', 'item4'];
-  items: EmailModObj;
-  reminderTask: any;
+  // items: any;
+  // reminderTask: any;
   // reminderTask: TodoTask;
   // items: EmailModObj = { id: newItem.id, email_address: newItem.email_address, email_password: newItem.email_password, email_subject: newItem.email_subject };
 
-  todoTaskSendReminderEmail(emailobj: EmailModObj) {
-    this.emailcomp.sendReminderEmail(emailobj);
-  }
+  // todoTaskSendReminderEmail(emailobj: EmailModObj) {
+  //   this.emailcomp.sendReminderEmail(emailobj);
+  // }
 
   addItem(newItem: EmailModObj, task: TodoTask) {
-    // this.items.push(newItem);
-    console.log("chamou addItem")
-    this.items = { id: newItem.id, email_address: newItem.email_address, email_password: newItem.email_password, email_subject: task.task_title };
-    // this.reminderTask = this.getOneTask(task)
-    // this.todoapi.getOneTask(task.id).subscribe({
-    //   next: (data) => {
-    //     this.reminderTask = data
-    //   },
-    //   error: (err) => { console.log(err) },
-    //   complete: () => { console.log(`Success: Queued task ${task.id} to deletion.`) }
-    // })
-    // this.items = {
-    //   id: newItem.id,
-    //   email_address: newItem.email_address,
-    //   email_password: newItem.email_password,
-    //   email_subject: newItem.email_subject
-    // }
-    // this.todoTaskSendReminderEmail(this.items);
-    console.log(this.items);
-    console.log(this.selectedTask);
+    // // this.items.push(newItem);
+    // console.log("chamou addItem")
+    // this.items = { id: newItem.id, email_address: newItem.email_address, email_password: newItem.email_password, email_subject: task.task_title };
+    // // this.reminderTask = this.getOneTask(task)
+    // // this.todoapi.getOneTask(task.id).subscribe({
+    // //   next: (data) => {
+    // //     this.reminderTask = data
+    // //   },
+    // //   error: (err) => { console.log(err) },
+    // //   complete: () => { console.log(`Success: Queued task ${task.id} to deletion.`) }
+    // // })
+    // // this.items = {
+    // //   id: newItem.id,
+    // //   email_address: newItem.email_address,
+    // //   email_password: newItem.email_password,
+    // //   email_subject: newItem.email_subject
+    // // }
+    // // this.todoTaskSendReminderEmail(this.items);
+    // console.log(this.items);
+    // console.log(this.selectedTask);
+  }
+
+  getReminderEmail() {
+    console.log(this.tdtaskemail)
   }
 
   showTaskDetails(id: number) {
@@ -170,10 +179,13 @@ export class TodolistComponent {
     })
   }
 
-  constructor (private todoapi: TodoapiService, private emailcomp: EmailModComponent) {
+  constructor (private todoapi: TodoapiService, private emailapi: EmailmodapiService) {
     this.getAllTasks()
     this.selectedTask = {task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""}
-    this.items = { id: 0, email_address: "", email_password: "", email_subject: "" };
-    this.reminderTask = {id: 0, task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""}
+    // this.items = { id: 0, email_address: "", email_password: "", email_subject: "" };
+    // this.items = this.emailapi.getOneEmailModObj;
+    // this.reminderTask = {id: 0, task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""}
+    // this.tdtaskemail = this.emailapi.getOneEmailModObj(this.emailapi.selectedEmail);
+    this.emailapi.getOneEmailModObj(this.tdtaskemail[0]);
   }
 }

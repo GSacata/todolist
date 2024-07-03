@@ -29,9 +29,9 @@
                         <input class="task-title-input" type="text" [(ngModel)]="item.task_title" placeholder="Title">
                     </div>
                 </div>
-                <div class="task-sideicon taskicon-edit" (click)="addItem(items, item)">
+                <!-- <div class="task-sideicon taskicon-edit" (click)="addItem(items, item)">
                     <span class="material-symbols-outlined">mail</span>
-                </div>
+                </div> -->
                 <div class="task-sideicon taskicon-edit" (click)="showTaskDetails(item.id)">
                     <span class="material-symbols-outlined">edit_note</span>
                 </div>
@@ -56,10 +56,11 @@
         </div>
     </div>
     <br>
-    <div class="flex-to-row">
+    <!-- <div class="flex-to-row">
         <p style="margin-right: auto;">email: {{items.email_address}}</p>
         <p style="margin-left: auto;">password: {{items.email_password}}</p>
-    </div>
+    </div> -->
+    <button (click)="getReminderEmail()">Log email</button>
     <br>
     <div class="list-body">
         <div class="ending">
