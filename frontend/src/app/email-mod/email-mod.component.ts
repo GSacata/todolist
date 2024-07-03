@@ -19,15 +19,15 @@ export class EmailModComponent {
   emailobj = MOCKEMAILOBJ;
   selectedEmail: any;
 
-  // @Output() newItemEvent = new EventEmitter<string>();
-  @Output() newItemEvent = new EventEmitter<EmailModObj>();
+  // @Output() newItemEvent = new EventEmitter<EmailModObj>();
+  @Output() newItemEvent = new EventEmitter<string>();
 
-  // addNewItem(value: string) {
-  //   this.newItemEvent.emit(value);
+  // addNewItem(value: EmailModObj) {
+  //   this.newItemEvent.emit(this.selectedEmail);
   // }
 
-  addNewItem(value: EmailModObj) {
-    this.newItemEvent.emit(this.selectedEmail);
+  addNewItem(value: string) {
+    this.newItemEvent.emit(value);
   }
   
   getAllEmailModObj() {

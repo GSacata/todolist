@@ -76,3 +76,9 @@
         </div>
     </div>
 </div>
+
+<ul>
+    <li *ngFor="let item of items">{{item}}</li>
+</ul>
+
+<app-email-mod (newItemEvent)="addItem($event)"></app-email-mod>
