@@ -49,7 +49,7 @@ export class TodolistComponent {
     //   email_password: newItem.email_password,
     //   email_subject: newItem.email_subject
     // }
-    this.todoTaskSendReminderEmail(this.items);
+    // this.todoTaskSendReminderEmail(this.items);
     console.log(this.items);
     console.log(this.selectedTask);
   }
