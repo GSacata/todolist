@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { EmailModObj } from '../models/emailobj';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
-import { MOCKEMAILOBJ } from '../misc/mock_emailobj';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +10,6 @@ export class EmailmodapiService {
   
   baseurl = "http://127.0.0.1:8000";
   httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
-  emailobj = MOCKEMAILOBJ;
-  selectedEmail: any;
 
   constructor(private http: HttpClient) { }
 
@@ -26,16 +23,8 @@ export class EmailmodapiService {
 
   editAndTestEmail(emailobj: EmailModObj): Observable <any> {
     const body = {email_address: emailobj.email_address, email_password: emailobj.email_password, email_subject: emailobj.email_subject}
-    // return this.http.put(this.baseurl + `/email_mod/${emailobj.id}/sent_test_email/`, body, {headers: this.httpHeaders})
     return this.http.put(this.baseurl + `/email_mod/${emailobj.id}/`, body, {headers: this.httpHeaders})
   }
-
-  // GUARDANDO PARA SEND REMINDER
-  // editAndTestEmail(emailobj: EmailModObj): Observable <any> {
-  //   const body = {email_address: emailobj.email_address, email_password: emailobj.email_password, email_subject: emailobj.email_subject}
-  //   // return this.http.put(this.baseurl + `/email_mod/${emailobj.id}/sent_test_email/`, body, {headers: this.httpHeaders})
-  //   return this.http.post(this.baseurl + `/email_mod/sent_test_email/`, {headers: this.httpHeaders})
-  // }
 
   sendReminderEmail(emailobj: EmailModObj): Observable <any> {
     const body = {email_address: emailobj.email_address, email_password: emailobj.email_password, email_subject: emailobj.email_subject}

@@ -15,7 +15,7 @@ import { Output, EventEmitter } from '@angular/core';
   styleUrl: './email-mod.component.css'
 })
 
-export class EmailModComponent implements OnInit {
+export class EmailModComponent {
   emailobj = MOCKEMAILOBJ;
   selectedEmail: any;
 
@@ -26,14 +26,10 @@ export class EmailModComponent implements OnInit {
   //   this.newItemEvent.emit(value);
   // }
 
-  ngOnInit(): void {
-    this.selectedEmail = this.getOneEmailModObj(this.emailobj[0]);
-  }
-
   addNewItem(value: EmailModObj) {
     this.newItemEvent.emit(this.selectedEmail);
   }
-
+  
   getAllEmailModObj() {
     this.emailmodapi.getAllEmailModObj().subscribe({
       next: (data) => {
@@ -43,7 +39,7 @@ export class EmailModComponent implements OnInit {
       complete: () => { console.log("Success: GET all email objects") }
     })
   }
-
+  
   getOneEmailModObj(emailobj: EmailModObj) {
     this.emailmodapi.getOneEmailModObj(emailobj).subscribe({
       next: (data) => {
@@ -53,7 +49,7 @@ export class EmailModComponent implements OnInit {
       complete: () => { console.log("Success: GET one email object") }
     })
   }
-
+  
   editAndTestEmail(emailobj: EmailModObj) {
     this.emailmodapi.editAndTestEmail(emailobj).subscribe({
       next: (data) => {
@@ -66,7 +62,7 @@ export class EmailModComponent implements OnInit {
       complete: () => { console.log(`Success: POST edited email`) }
     })
   }
-
+  
   // GUARDANDO PARA SEND REMINDER
   // editAndTestEmail(emailobj: EmailModObj) {
   //   this.emailmodapi.editAndTestEmail(emailobj).subscribe({
@@ -77,7 +73,7 @@ export class EmailModComponent implements OnInit {
   //     complete: () => { console.log("Success: GET all email objects") }
   //   })
   // }
-
+  
   sendReminderEmail(emailobj: EmailModObj) {
     this.emailmodapi.editAndTestEmail(emailobj).subscribe({
       next: (data) => {
@@ -89,6 +85,13 @@ export class EmailModComponent implements OnInit {
       error: (err) => { console.log(err) },
       complete: () => { console.log(`Success: POST reminder email`) }
     })
+  }
+  
+  ngOnInit(): void {
+    console.log("Rodou ngOnInit do email-mod")
+    this.getOneEmailModObj(this.emailobj[0]);
+    this.addNewItem(this.selectedEmail);
+    console.log(this.selectedEmail);
   }
 
   constructor (private emailmodapi: EmailmodapiService) {
