@@ -20,13 +20,13 @@ export class EmailModComponent {
   selectedEmail: any;
 
   // @Output() newItemEvent = new EventEmitter<EmailModObj>();
-  @Output() newItemEvent = new EventEmitter<string>();
+  @Output() newItemEvent = new EventEmitter<EmailModObj>();
 
   // addNewItem(value: EmailModObj) {
   //   this.newItemEvent.emit(this.selectedEmail);
   // }
 
-  addNewItem(value: string) {
+  addNewItem(value: EmailModObj) {
     this.newItemEvent.emit(value);
   }
   
@@ -89,13 +89,13 @@ export class EmailModComponent {
   
   ngOnInit(): void {
     console.log("Rodou ngOnInit do email-mod")
-    this.getOneEmailModObj(this.emailobj[0]);
-    this.addNewItem(this.selectedEmail);
-    console.log(this.selectedEmail);
+    console.log(this.selectedEmail)
+    // this.addNewItem(this.selectedEmail);
   }
-
+  
   constructor (private emailmodapi: EmailmodapiService) {
     this.getAllEmailModObj();
     this.getOneEmailModObj(this.emailobj[0])
+    this.selectedEmail = {id: 0, email_address: "", email_password: "", email_subject: ""}
   }
 }

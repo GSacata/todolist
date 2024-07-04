@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { NgModule, OnInit } from "@angular/core";
 import { NgIf, NgFor } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms"; // imports ngModel, to bem used on todolist.component.ts

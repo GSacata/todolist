@@ -4,6 +4,7 @@ import { TodoTask } from '../models/todotask';
 import { TodoapiService } from '../services/todoapi.service';
 import { AppModule } from '../app.module';
 import { EmailModComponent } from '../email-mod/email-mod.component';
+import { EmailModObj } from '../models/emailobj';
 declare var $: any;
 
 @Component({
@@ -21,8 +22,9 @@ export class TodolistComponent {
   selectedTask: any;
   items = ['item1', 'item2', 'item3', 'item4'];
 
-  addItem(newItem: string) {
-    this.items.push(newItem);
+  addItem(newItem: EmailModObj) {
+    // this.items.push(newItem);
+    console.log(this.items)
   }
 
   showTaskDetails(id: number) {
