@@ -20,11 +20,11 @@ declare var $: any;
 export class TodolistComponent {
   task = MOCKTASKLIST;
   selectedTask: any;
-  items = ['item1', 'item2', 'item3', 'item4'];
+  tdTaskEmail: EmailModObj;
 
   addItem(newItem: EmailModObj) {
-    // this.items.push(newItem);
-    console.log(this.items)
+    this.tdTaskEmail = {id: newItem.id, email_address: newItem.email_address, email_password: newItem.email_password, email_subject: newItem.email_subject}
+    console.log(this.tdTaskEmail)
   }
 
   showTaskDetails(id: number) {
@@ -69,7 +69,7 @@ export class TodolistComponent {
       error: (err) => { console.log(err) },
       complete: () => { console.log(`Success: PUT edited task ${task.id}`) }
     }),
-    this.hideTaskDetails(task.id);
+      this.hideTaskDetails(task.id);
   }
 
   cancelEditTaskBody(task: TodoTask) {
@@ -111,12 +111,12 @@ export class TodolistComponent {
 
   cancelDeleteTask() {
     $(`#popup-canceltask`).toggle();
-    this.selectedTask = {task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""};
+    this.selectedTask = { task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: "" };
   }
 
   refreshTasks() {
     this.getAllTasks();
-    this.selectedTask = {id: "", task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""}
+    this.selectedTask = { id: "", task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: "" }
   }
 
   refreshThisTask(task: TodoTask) {
@@ -143,8 +143,9 @@ export class TodolistComponent {
     })
   }
 
-  constructor (private todoapi: TodoapiService) {
+  constructor(private todoapi: TodoapiService) {
     this.getAllTasks()
-    this.selectedTask = {task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: ""}
+    this.selectedTask = { task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: "" }
+    this.tdTaskEmail = { id: 0, email_address: "", email_password: "", email_subject: "" }
   }
 }
