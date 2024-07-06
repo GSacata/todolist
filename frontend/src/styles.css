@@ -68,16 +68,44 @@ td {
 }
 
 .task-title-input,
-.task-desc-input {
+.task-desc-input,
+.email-input,
+.password-input {
     background-color: transparent;
     border: none;
 }
 
+/* .task-title-input:focus-visible, */
 .task-title-input:focus-visible,
-.task-title-input:focus-visible {
+.email-input:focus-visible,
+.password-input:focus-visible {
     background-color: var(--color-bg);
     border: none;
     outline: var(--color-icon);
+}
+
+.email-box {
+    border: solid 2px var(--color-font);
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 1rem;
+    background-color: var(--color-primary);
+}
+
+.email-input,
+.password-input {
+    border: solid 2px var(--color-font);
+    border-radius: 5px;
+    /* padding: 1rem; */
+    background-color: var(--color-bg);
+    width: 100%;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.email-btn-box {
+    margin-top: 0.5rem;
+    width: 100%;
 }
 
 .task-title-input {
@@ -162,6 +190,13 @@ td {
 
 .align-btn-to-r {
     margin-left: auto;
+}
+
+.app-flexbody {
+    display: flex;
+    flex-direction: row;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .list-body {

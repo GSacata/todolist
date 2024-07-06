@@ -1,13 +1,11 @@
-<p>email-mod works!</p>
-
-<section>
+<section class="list-body email-box">
     <div>
-        <input type="text" placeholder="your@email.com" [(ngModel)]="selectedEmail.email_address"><br>
-        <input type="password" placeholder="xxxx xxxx xxxx xxxx" [(ngModel)]="selectedEmail.email_password">
+        <input type="text" placeholder="your@email.com" class="email-input" [(ngModel)]="selectedEmail.email_address"><br>
+        <input type="password" placeholder="xxxx xxxx xxxx xxxx" class="password-input" [(ngModel)]="selectedEmail.email_password">
     </div>
-    <div>
-        <button type="button" (click)="addNewItem(selectedEmail)">Save</button>
-        <button (click)="editAndTestEmail(selectedEmail)">Test email</button>
+    <div class="email-btn-box">
+        <button type="button" (click)="addNewItem(selectedEmail)" class="btn-confirm">Save</button>
+        <button (click)="editAndTestEmail(selectedEmail)" class="btn-confirm">Test email</button>
     </div>
 <!-- 
     <label for="item-input">Add an item:</label>
