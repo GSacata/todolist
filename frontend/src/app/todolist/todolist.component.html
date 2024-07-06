@@ -29,8 +29,8 @@
                         <input class="task-title-input" type="text" [(ngModel)]="item.task_title" placeholder="Title">
                     </div>
                 </div>
-                <div class="task-sideicon taskicon-edit" (click)="addItem(items, item)">
-                    <span class="material-symbols-outlined">mail</span>
+                <div class="task-sideicon taskicon-edit">
+                    <span class="material-symbols-outlined" (click)="sendThisReminder(tdTaskEmail, item)">mail</span>
                 </div>
                 <div class="task-sideicon taskicon-edit" (click)="showTaskDetails(item.id)">
                     <span class="material-symbols-outlined">edit_note</span>
@@ -56,11 +56,6 @@
         </div>
     </div>
     <br>
-    <div class="flex-to-row">
-        <p style="margin-right: auto;">email: {{items.email_address}}</p>
-        <p style="margin-left: auto;">password: {{items.email_password}}</p>
-    </div>
-    <br>
     <div class="list-body">
         <div class="ending">
             <p>
@@ -82,6 +77,6 @@
     </div>
 </div>
 
+<p>TESTING: {{tdTaskEmail.email_address}}</p>
 
-<!-- <app-email-mod (newItemEvent)="addItem($event)"></app-email-mod> -->
-<app-email-mod (newItemEvent)="addItem($event, selectedTask)"></app-email-mod>
+<app-email-mod (newItemEvent)="addItem($event)"></app-email-mod>

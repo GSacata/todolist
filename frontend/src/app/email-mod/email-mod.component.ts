@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppModule } from '../app.module';
 import { MOCKEMAILOBJ } from '../misc/mock_emailobj';
 import { EmailmodapiService } from '../services/emailmodapi.service';
@@ -19,17 +19,17 @@ export class EmailModComponent {
   emailobj = MOCKEMAILOBJ;
   selectedEmail: any;
 
-  // @Output() newItemEvent = new EventEmitter<string>();
+  // @Output() newItemEvent = new EventEmitter<EmailModObj>();
   @Output() newItemEvent = new EventEmitter<EmailModObj>();
 
-  // addNewItem(value: string) {
-  //   this.newItemEvent.emit(value);
+  // addNewItem(value: EmailModObj) {
+  //   this.newItemEvent.emit(this.selectedEmail);
   // }
 
   addNewItem(value: EmailModObj) {
-    this.newItemEvent.emit({id: value.id, email_address: value.email_address, email_password: value.email_password, email_subject: value.email_subject});
+    this.newItemEvent.emit(value);
   }
-
+  
   getAllEmailModObj() {
     this.emailmodapi.getAllEmailModObj().subscribe({
       next: (data) => {
@@ -39,7 +39,7 @@ export class EmailModComponent {
       complete: () => { console.log("Success: GET all email objects") }
     })
   }
-
+  
   getOneEmailModObj(emailobj: EmailModObj) {
     this.emailmodapi.getOneEmailModObj(emailobj).subscribe({
       next: (data) => {
@@ -49,7 +49,7 @@ export class EmailModComponent {
       complete: () => { console.log("Success: GET one email object") }
     })
   }
-
+  
   editAndTestEmail(emailobj: EmailModObj) {
     this.emailmodapi.editAndTestEmail(emailobj).subscribe({
       next: (data) => {
@@ -62,7 +62,7 @@ export class EmailModComponent {
       complete: () => { console.log(`Success: POST edited email`) }
     })
   }
-
+  
   // GUARDANDO PARA SEND REMINDER
   // editAndTestEmail(emailobj: EmailModObj) {
   //   this.emailmodapi.editAndTestEmail(emailobj).subscribe({
@@ -73,7 +73,7 @@ export class EmailModComponent {
   //     complete: () => { console.log("Success: GET all email objects") }
   //   })
   // }
-
+  
   sendReminderEmail(emailobj: EmailModObj) {
     this.emailmodapi.editAndTestEmail(emailobj).subscribe({
       next: (data) => {
@@ -86,9 +86,16 @@ export class EmailModComponent {
       complete: () => { console.log(`Success: POST reminder email`) }
     })
   }
-
+  
+  ngOnInit(): void {
+    console.log("Rodou ngOnInit do email-mod")
+    console.log(this.selectedEmail)
+    // this.addNewItem(this.selectedEmail);
+  }
+  
   constructor (private emailmodapi: EmailmodapiService) {
     this.getAllEmailModObj();
     this.getOneEmailModObj(this.emailobj[0])
+    this.selectedEmail = {id: 0, email_address: "", email_password: "", email_subject: ""}
   }
 }
