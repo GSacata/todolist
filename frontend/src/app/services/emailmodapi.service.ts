@@ -16,5 +16,19 @@ export class EmailmodapiService {
   getAllEmailModObj(): Observable<any> {
     return this.http.get(this.baseurl + "/email_mod/", {headers: this.httpHeaders})
   }
+
+  getOneEmailModObj(emailobj: EmailModObj): Observable <any> {
+    return this.http.get(this.baseurl + `/email_mod/${emailobj.id}`, {headers: this.httpHeaders})
+  }
+
+  editAndTestEmail(emailobj: EmailModObj): Observable <any> {
+    const body = {email_address: emailobj.email_address, email_password: emailobj.email_password, email_subject: emailobj.email_subject}
+    return this.http.put(this.baseurl + `/email_mod/${emailobj.id}/`, body, {headers: this.httpHeaders})
+  }
+
+  sendReminderEmail(emailobj: EmailModObj): Observable <any> {
+    const body = {email_address: emailobj.email_address, email_password: emailobj.email_password, email_subject: emailobj.email_subject}
+    return this.http.post(this.baseurl + `/email_mod/${emailobj.id}/send_reminder/`, body, {headers: this.httpHeaders})
+  }
   
 }

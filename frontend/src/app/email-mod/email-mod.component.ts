@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AppModule } from '../app.module';
 import { MOCKEMAILOBJ } from '../misc/mock_emailobj';
 import { EmailmodapiService } from '../services/emailmodapi.service';
+import { EmailModObj } from '../models/emailobj';
 
 @Component({
   selector: 'app-email-mod',
@@ -27,7 +28,38 @@ export class EmailModComponent {
     })
   }
 
+  getOneEmailModObj(emailobj: EmailModObj) {
+    this.emailmodapi.getOneEmailModObj(emailobj).subscribe({
+      next: (data) => {
+        this.selectedEmail = data
+      },
+      error: (error) => { console.log(error) },
+      complete: () => { console.log("Success: GET one email object") }
+    })
+  }
+
+  editAndTestEmail(emailobj: EmailModObj) {
+    this.emailmodapi.editAndTestEmail(emailobj).subscribe({
+      next: (data) => {
+        emailobj = data
+      },
+      error: (err) => { console.log(err) },
+      complete: () => { console.log(`Success: PUT edited email ${emailobj.id}`) }
+    })
+  }
+
+  sendReminderEmail(emailobj: EmailModObj) {
+    this.emailmodapi.sendReminderEmail(emailobj).subscribe({
+      next: (data) => {
+        data = this.selectedEmail
+      },
+      error: (err) => { console.log(err) },
+      complete: () => { console.log(`Success: POST sent reminder email`) }
+    })
+  }
+
   constructor (private emailmodapi: EmailmodapiService) {
     this.getAllEmailModObj();
+    this.getOneEmailModObj(this.emailobj[0])
   }
 }
