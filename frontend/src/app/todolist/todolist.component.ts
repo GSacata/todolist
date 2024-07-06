@@ -27,6 +27,11 @@ export class TodolistComponent {
     console.log(this.tdTaskEmail)
   }
 
+  logTestEmail(emailobj: EmailModObj, task: TodoTask) {
+    this.tdTaskEmail = {id: emailobj.id, email_address: emailobj.email_address, email_password: emailobj.email_password, email_subject: task.task_title}
+    console.log(this.tdTaskEmail)
+  }
+
   showTaskDetails(id: number) {
     $(`#task-${id} > div.task-details`).toggle();
     $(`#task-${id} > div.titlebar > div:nth-child(2) > div > span`).toggle();

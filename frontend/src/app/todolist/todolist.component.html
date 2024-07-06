@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="task-sideicon taskicon-edit">
-                    <span class="material-symbols-outlined">mail</span>
+                    <span class="material-symbols-outlined" (click)="logTestEmail(tdTaskEmail, item)">mail</span>
                 </div>
                 <div class="task-sideicon taskicon-edit" (click)="showTaskDetails(item.id)">
                     <span class="material-symbols-outlined">edit_note</span>
