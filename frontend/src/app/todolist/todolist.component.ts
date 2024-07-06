@@ -5,6 +5,7 @@ import { TodoapiService } from '../services/todoapi.service';
 import { AppModule } from '../app.module';
 import { EmailModComponent } from '../email-mod/email-mod.component';
 import { EmailModObj } from '../models/emailobj';
+import { EmailmodapiService } from '../services/emailmodapi.service';
 declare var $: any;
 
 @Component({
@@ -27,8 +28,14 @@ export class TodolistComponent {
     console.log(this.tdTaskEmail)
   }
 
-  logTestEmail(emailobj: EmailModObj, task: TodoTask) {
+  sendThisReminder(emailobj: EmailModObj, task: TodoTask) {
     this.tdTaskEmail = {id: emailobj.id, email_address: emailobj.email_address, email_password: emailobj.email_password, email_subject: task.task_title}
+    // this.emailapi.sendReminderEmail(this.tdTaskEmail)
+    this.emailapi.sendReminderEmail(this.tdTaskEmail).subscribe({
+      next: (data) => {data = this.tdTaskEmail},
+      error: (err) => { console.log(err) },
+      complete: () => { console.log(`Success: POST reminder email`) }
+    })
     console.log(this.tdTaskEmail)
   }
 
@@ -148,7 +155,7 @@ export class TodolistComponent {
     })
   }
 
-  constructor(private todoapi: TodoapiService) {
+  constructor(private todoapi: TodoapiService, private emailapi: EmailmodapiService) {
     this.getAllTasks()
     this.selectedTask = { task_title: "", task_completion: false, task_description: "", task_created_at: "", task_updated_at: "" }
     this.tdTaskEmail = { id: 0, email_address: "", email_password: "", email_subject: "" }
