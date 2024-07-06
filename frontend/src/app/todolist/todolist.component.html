@@ -14,46 +14,49 @@
         </div>
     </div>
     <br>
-    <div class="list-body list-body-scroll">
-        <div *ngFor="let item of task" class="task-body" id="task-{{item.id}}">
-            <div class="titlebar">
-                <div class="task-mainicon task-notdone" *ngIf="item.task_completion == false" (click)="markAsDone(item)">
-                    <span class="material-symbols-outlined">radio_button_unchecked</span>
-                </div>
-                <div class="task-mainicon task-done" *ngIf="item.task_completion == true" (click)="markAsNotDone(item)">
-                    <span class="material-symbols-outlined">radio_button_checked</span>
-                </div>
-                <div>
-                    <div class="task-title flex-to-column">
-                        <span class="task-title-para">{{item.task_title}}</span>
-                        <input class="task-title-input" type="text" [(ngModel)]="item.task_title" placeholder="Title">
+    <div class="app-flexbody">
+        <div class="list-body list-body-scroll">
+            <div *ngFor="let item of task" class="task-body" id="task-{{item.id}}">
+                <div class="titlebar">
+                    <div class="task-mainicon task-notdone" *ngIf="item.task_completion == false" (click)="markAsDone(item)">
+                        <span class="material-symbols-outlined">radio_button_unchecked</span>
+                    </div>
+                    <div class="task-mainicon task-done" *ngIf="item.task_completion == true" (click)="markAsNotDone(item)">
+                        <span class="material-symbols-outlined">radio_button_checked</span>
+                    </div>
+                    <div>
+                        <div class="task-title flex-to-column">
+                            <span class="task-title-para">{{item.task_title}}</span>
+                            <input class="task-title-input" type="text" [(ngModel)]="item.task_title" placeholder="Title">
+                        </div>
+                    </div>
+                    <div class="task-sideicon taskicon-edit">
+                        <span class="material-symbols-outlined" (click)="sendThisReminder(tdTaskEmail, item)">mail</span>
+                    </div>
+                    <div class="task-sideicon taskicon-edit" (click)="showTaskDetails(item.id)">
+                        <span class="material-symbols-outlined">edit_note</span>
+                    </div>
+                    <div class="task-sideicon taskicon-closeedit" (click)="hideTaskDetails(item.id)">
+                        <span class="material-symbols-outlined">edit_note</span>
+                    </div>
+                    <div class="task-sideicon taskicon-delete" (click)="queueToDeletion(item)">
+                        <span class="material-symbols-outlined">delete</span>
                     </div>
                 </div>
-                <div class="task-sideicon taskicon-edit">
-                    <span class="material-symbols-outlined" (click)="sendThisReminder(tdTaskEmail, item)">mail</span>
-                </div>
-                <div class="task-sideicon taskicon-edit" (click)="showTaskDetails(item.id)">
-                    <span class="material-symbols-outlined">edit_note</span>
-                </div>
-                <div class="task-sideicon taskicon-closeedit" (click)="hideTaskDetails(item.id)">
-                    <span class="material-symbols-outlined">edit_note</span>
-                </div>
-                <div class="task-sideicon taskicon-delete" (click)="queueToDeletion(item)">
-                    <span class="material-symbols-outlined">delete</span>
-                </div>
-            </div>
-            <div class="task-details">
-                <textarea class="task-desc-input" type="text" [(ngModel)]="item.task_description" placeholder="Description" rows="4"></textarea>
-                <div class="flex-to-row">
-                    <p style="margin-right: auto;">Created at: {{item.task_created_at}}</p>
-                    <p style="margin-left: auto;">Updated at: {{item.task_updated_at}}</p>
-                </div>
-                <div class="flex-to-row gen-centerelements">
-                    <button (click)="editTaskBody(item)" class="btn-confirm">Save</button>
-                    <button (click)="cancelEditTaskBody(item)" class="btn-cancel">Cancel</button>
+                <div class="task-details">
+                    <textarea class="task-desc-input" type="text" [(ngModel)]="item.task_description" placeholder="Description" rows="4"></textarea>
+                    <div class="flex-to-row">
+                        <p style="margin-right: auto;">Created at: {{item.task_created_at}}</p>
+                        <p style="margin-left: auto;">Updated at: {{item.task_updated_at}}</p>
+                    </div>
+                    <div class="flex-to-row gen-centerelements">
+                        <button (click)="editTaskBody(item)" class="btn-confirm">Save</button>
+                        <button (click)="cancelEditTaskBody(item)" class="btn-cancel">Cancel</button>
+                    </div>
                 </div>
             </div>
         </div>
+        <app-email-mod (newItemEvent)="addItem($event)"></app-email-mod>
     </div>
     <br>
     <div class="list-body">
@@ -77,6 +80,3 @@
     </div>
 </div>
 
-<p>TESTING: {{tdTaskEmail.email_address}}</p>
-
-<app-email-mod (newItemEvent)="addItem($event)"></app-email-mod>
