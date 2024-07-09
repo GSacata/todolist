@@ -27,6 +27,7 @@ export class EmailModComponent {
   // }
 
   addNewItem(value: EmailModObj) {
+    this.editEmail(value);
     this.newItemEvent.emit(value);
   }
   
@@ -50,8 +51,18 @@ export class EmailModComponent {
     })
   }
   
-  editAndTestEmail(emailobj: EmailModObj) {
-    this.emailmodapi.editAndTestEmail(emailobj).subscribe({
+  editEmail(emailobj: EmailModObj) {
+    this.emailmodapi.editEmail(emailobj).subscribe({
+      next: (data) => {
+        emailobj = data;
+      },
+      error: (err) => { console.log(err) },
+      complete: () => { console.log(`Success: POST edited email`) }
+    })
+  }
+  
+  testEmail(emailobj: EmailModObj) {
+    this.emailmodapi.testEmail(emailobj).subscribe({
       next: (data) => {
         emailobj.id = data.id
         emailobj.email_address = data.email_address
@@ -63,19 +74,8 @@ export class EmailModComponent {
     })
   }
   
-  // GUARDANDO PARA SEND REMINDER
-  // editAndTestEmail(emailobj: EmailModObj) {
-  //   this.emailmodapi.editAndTestEmail(emailobj).subscribe({
-  //     next: (data) => {
-  //       data = this.emailobj
-  //     },
-  //     error: (error) => { console.log(error) },
-  //     complete: () => { console.log("Success: GET all email objects") }
-  //   })
-  // }
-  
   sendReminderEmail(emailobj: EmailModObj) {
-    this.emailmodapi.editAndTestEmail(emailobj).subscribe({
+    this.emailmodapi.testEmail(emailobj).subscribe({
       next: (data) => {
         emailobj.id = data.id
         emailobj.email_address = data.email_address
