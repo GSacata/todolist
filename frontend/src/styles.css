@@ -223,6 +223,10 @@ td {
     overflow-y: scroll;
 }
 
+.taskicon-email {
+    display: block;
+}
+
 .taskicon-edit {
     display: block;
 }
