@@ -90,6 +90,18 @@ td {
     border-radius: 10px;
     padding: 1rem;
     background-color: var(--color-primary);
+    width: 250px !important;
+}
+
+.emailmod-hint-content {
+    max-width: 100%;
+    margin-top: 1rem;
+    color: var(--color-cancel);
+    display: none;
+}
+
+.emailmod-hint-content > a {
+    color: var(--color-cancel);
 }
 
 .email-input,

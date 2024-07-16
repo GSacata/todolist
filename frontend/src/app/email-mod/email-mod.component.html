@@ -1,4 +1,7 @@
 <section class="list-body email-box">
+    <div style="text-align: center;">
+        Email module <span class="emailmod-hint material-symbols-outlined" (click)="showEmailModHint()">lightbulb</span>
+    </div>
     <div>
         <input type="text" placeholder="your@email.com" class="email-input" [(ngModel)]="selectedEmail.email_address"><br>
         <input type="password" placeholder="xxxx xxxx xxxx xxxx" class="password-input" [(ngModel)]="selectedEmail.email_password">
@@ -6,6 +9,13 @@
     <div class="email-btn-box">
         <button type="button" (click)="addNewItem(selectedEmail)" class="btn-confirm">Save</button>
         <button (click)="testEmail(selectedEmail)" class="btn-confirm">Test email</button>
+    </div>
+    <div class="emailmod-hint-content">
+        The password used here is <b>not</b> your account password! The To Do List uses a Google app password instead.<br>
+        It is strongly advised that you <b>dispose of the app password</b> used in this application after your tests.<br>
+        The following guides show you how to create one:<br>
+        EN-US: <a href="https://knowledge.workspace.google.com/kb/how-to-create-app-passwords-000009237" target="_blank">App passwords</a><br>
+        PT-BR: <a href="https://support.google.com/accounts/answer/185833?hl=pt-br#zippy=%2Cpor-que-voc%C3%AA-precisa-de-uma-senha-de-app%2Csenhas-de-app-revogadas-ap%C3%B3s-a-mudan%C3%A7a-da-senha" target="_blank">Senhas de app</a>
     </div>
 <!-- 
     <label for="item-input">Add an item:</label>

@@ -4,6 +4,7 @@ import { MOCKEMAILOBJ } from '../misc/mock_emailobj';
 import { EmailmodapiService } from '../services/emailmodapi.service';
 import { EmailModObj } from '../models/emailobj';
 import { Output, EventEmitter } from '@angular/core';
+declare var $: any;
 
 @Component({
   selector: 'app-email-mod',
@@ -85,6 +86,10 @@ export class EmailModComponent {
       error: (err) => { console.log(err) },
       complete: () => { console.log(`Success: POST reminder email`) }
     })
+  }
+
+  showEmailModHint() {
+    $(".emailmod-hint-content").slideToggle(1200);
   }
   
   ngOnInit(): void {
