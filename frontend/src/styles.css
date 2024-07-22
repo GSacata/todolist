@@ -104,6 +104,15 @@ td {
     color: var(--color-cancel);
 }
 
+.emailmod-invalid {
+    display: none;
+    text-align: center;
+    margin: 10px;
+    padding: 5px;
+    background: var(--color-cancel);
+    border: solid 2px var(--color-font);
+}
+
 .email-input,
 .password-input {
     border: solid 2px var(--color-font);

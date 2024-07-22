@@ -19,6 +19,7 @@ declare var $: any;
 export class EmailModComponent {
   emailobj = MOCKEMAILOBJ;
   selectedEmail: any;
+  tempPassword: string = "";
 
   // @Output() newItemEvent = new EventEmitter<EmailModObj>();
   @Output() newItemEvent = new EventEmitter<EmailModObj>();
@@ -91,6 +92,34 @@ export class EmailModComponent {
   showEmailModHint() {
     $(".emailmod-hint-content").slideToggle(1200);
   }
+
+  testPassword(emailobj: EmailModObj) {
+    console.log("Running testpassword");
+    this.emailmodapi.getOneEmailModObj(emailobj).subscribe({
+      next: (data) => {
+        this.selectedEmail = data
+      },
+      error: (error) => { console.log(error) },
+      complete: () => { console.log("Success: GET one email object") }
+    })
+    this.tempPassword = this.selectedEmail.email_password
+    console.log(this.tempPassword)
+    
+    const regex = new RegExp(/[a-z]{4}\s[a-z]{4}\s[a-z]{4}\s[a-z]{4}/);
+    if (regex.test(this.tempPassword)) {
+      this.hidePasswordWarning();
+    } else {
+      this.showPasswordWarning();
+    }
+  }
+
+  showPasswordWarning() {
+    $(".emailmod-invalid").show();
+  }
+
+  hidePasswordWarning() {
+    $(".emailmod-invalid").hide();
+  }
   
   ngOnInit(): void {
     console.log("Rodou ngOnInit do email-mod")
@@ -102,5 +131,6 @@ export class EmailModComponent {
     this.getAllEmailModObj();
     this.getOneEmailModObj(this.emailobj[0])
     this.selectedEmail = {id: 0, email_address: "", email_password: "", email_subject: ""}
+    this.tempPassword = "";
   }
 }

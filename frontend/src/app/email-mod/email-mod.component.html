@@ -8,6 +8,7 @@
     </div>
     <div class="email-btn-box">
         <button type="button" (click)="addNewItem(selectedEmail)" class="btn-confirm">Save</button>
+        <button type="button" (click)="testPassword(selectedEmail)" class="btn-confirm">Test password</button>
         <button (click)="testEmail(selectedEmail)" class="btn-confirm">Test email</button>
     </div>
     <div class="emailmod-hint-content">
@@ -16,6 +17,9 @@
         The following guides show you how to create one:<br>
         EN-US: <a href="https://knowledge.workspace.google.com/kb/how-to-create-app-passwords-000009237" target="_blank">App passwords</a><br>
         PT-BR: <a href="https://support.google.com/accounts/answer/185833?hl=pt-br#zippy=%2Cpor-que-voc%C3%AA-precisa-de-uma-senha-de-app%2Csenhas-de-app-revogadas-ap%C3%B3s-a-mudan%C3%A7a-da-senha" target="_blank">Senhas de app</a>
+    </div>
+    <div class="emailmod-invalid">
+        Invalid password.
     </div>
 <!-- 
     <label for="item-input">Add an item:</label>
