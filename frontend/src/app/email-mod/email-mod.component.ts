@@ -30,7 +30,25 @@ export class EmailModComponent {
 
   addNewItem(value: EmailModObj) {
     this.editEmail(value);
-    this.newItemEvent.emit(value);
+
+    // Tests password format
+    this.emailmodapi.getOneEmailModObj(value).subscribe({
+      next: (data) => {
+        this.selectedEmail = data
+      },
+      error: (error) => { console.log(error) },
+      complete: () => { console.log("Success: GET one email object") }
+    })
+    this.tempPassword = this.selectedEmail.email_password
+    console.log(this.tempPassword)
+    
+    const regex = new RegExp(/[a-z]{4}\s[a-z]{4}\s[a-z]{4}\s[a-z]{4}/);
+    if (regex.test(this.tempPassword)) {
+      this.hidePasswordWarning();
+      this.newItemEvent.emit(value);
+    } else {
+      this.showPasswordWarning();
+    }
   }
   
   getAllEmailModObj() {
@@ -93,26 +111,6 @@ export class EmailModComponent {
     $(".emailmod-hint-content").slideToggle(1200);
   }
 
-  testPassword(emailobj: EmailModObj) {
-    console.log("Running testpassword");
-    this.emailmodapi.getOneEmailModObj(emailobj).subscribe({
-      next: (data) => {
-        this.selectedEmail = data
-      },
-      error: (error) => { console.log(error) },
-      complete: () => { console.log("Success: GET one email object") }
-    })
-    this.tempPassword = this.selectedEmail.email_password
-    console.log(this.tempPassword)
-    
-    const regex = new RegExp(/[a-z]{4}\s[a-z]{4}\s[a-z]{4}\s[a-z]{4}/);
-    if (regex.test(this.tempPassword)) {
-      this.hidePasswordWarning();
-    } else {
-      this.showPasswordWarning();
-    }
-  }
-
   showPasswordWarning() {
     $(".emailmod-invalid").show();
   }
@@ -124,7 +122,6 @@ export class EmailModComponent {
   ngOnInit(): void {
     console.log("Rodou ngOnInit do email-mod")
     console.log(this.selectedEmail)
-    // this.addNewItem(this.selectedEmail);
   }
   
   constructor (private emailmodapi: EmailmodapiService) {
