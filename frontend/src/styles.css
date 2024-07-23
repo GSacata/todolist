@@ -70,7 +70,7 @@ td {
 .task-title-input,
 .task-desc-input,
 .email-input,
-.password-input {
+#password-input {
     background-color: transparent;
     border: none;
 }
@@ -78,7 +78,7 @@ td {
 /* .task-title-input:focus-visible, */
 .task-title-input:focus-visible,
 .email-input:focus-visible,
-.password-input:focus-visible {
+#password-input:focus-visible {
     background-color: var(--color-bg);
     border: none;
     outline: var(--color-icon);
@@ -114,7 +114,7 @@ td {
 }
 
 .email-input,
-.password-input {
+#password-input {
     border: solid 2px var(--color-font);
     border-radius: 5px;
     /* padding: 1rem; */

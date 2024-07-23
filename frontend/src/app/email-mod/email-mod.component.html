@@ -1,10 +1,12 @@
 <section class="list-body email-box">
-    <div style="text-align: center;">
-        Email module <span class="emailmod-hint material-symbols-outlined" (click)="showEmailModHint()">lightbulb</span>
+    <div style="text-align: center;" class="flex-to-row emailmod-title">
+        <span class="emailmod-hint material-symbols-outlined" (click)="showEmailModHint()">lightbulb</span>
+        <span style="width: 100%;">Email module</span>
+        <span class="emailmod-hint material-symbols-outlined" (click)="showsPassword()">visibility</span>
     </div>
     <div>
         <input type="text" placeholder="your@email.com" class="email-input" [(ngModel)]="selectedEmail.email_address"><br>
-        <input type="password" placeholder="xxxx xxxx xxxx xxxx" class="password-input" [(ngModel)]="selectedEmail.email_password">
+        <input type="password" placeholder="xxxx xxxx xxxx xxxx" id="password-input" [(ngModel)]="selectedEmail.email_password">
     </div>
     <div class="email-btn-box">
         <button type="button" (click)="addNewItem(selectedEmail)" class="btn-confirm">Save</button>

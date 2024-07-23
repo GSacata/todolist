@@ -107,6 +107,16 @@ export class EmailModComponent {
     })
   }
 
+  showsPassword() {
+    const pswdBox = document.querySelector("#password-input");
+    // console.log(pswdBox)
+    if (pswdBox?.getAttribute('type') == 'password') {
+      pswdBox?.setAttribute('type', 'text')
+    } else {
+      pswdBox?.setAttribute('type', 'password')
+    }
+  }
+
   showEmailModHint() {
     $(".emailmod-hint-content").slideToggle(1200);
   }
