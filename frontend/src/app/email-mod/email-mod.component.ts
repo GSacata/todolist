@@ -45,9 +45,11 @@ export class EmailModComponent {
     const regex = new RegExp(/[a-z]{4}\s[a-z]{4}\s[a-z]{4}\s[a-z]{4}/);
     if (regex.test(this.tempPassword)) {
       this.hidePasswordWarning();
+      $(".emailmod-hint-content").hide(1200);
       this.newItemEvent.emit(value);
     } else {
       this.showPasswordWarning();
+      $(".emailmod-hint-content").show(1200);
     }
   }
   
