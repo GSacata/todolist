@@ -70,7 +70,7 @@ td {
 .task-title-input,
 .task-desc-input,
 .email-input,
-.password-input {
+#password-input {
     background-color: transparent;
     border: none;
 }
@@ -78,7 +78,7 @@ td {
 /* .task-title-input:focus-visible, */
 .task-title-input:focus-visible,
 .email-input:focus-visible,
-.password-input:focus-visible {
+#password-input:focus-visible {
     background-color: var(--color-bg);
     border: none;
     outline: var(--color-icon);
@@ -90,10 +90,31 @@ td {
     border-radius: 10px;
     padding: 1rem;
     background-color: var(--color-primary);
+    width: 250px !important;
+}
+
+.emailmod-hint-content {
+    max-width: 100%;
+    margin-top: 1rem;
+    color: var(--color-cancel);
+    display: none;
+}
+
+.emailmod-hint-content > a {
+    color: var(--color-cancel);
+}
+
+.emailmod-invalid {
+    display: none;
+    text-align: center;
+    margin: 10px;
+    padding: 5px;
+    background: var(--color-cancel);
+    border: solid 2px var(--color-font);
 }
 
 .email-input,
-.password-input {
+#password-input {
     border: solid 2px var(--color-font);
     border-radius: 5px;
     /* padding: 1rem; */
@@ -209,6 +230,10 @@ td {
     height: 500px;
     max-height: 500px;
     overflow-y: scroll;
+}
+
+.taskicon-email {
+    display: block;
 }
 
 .taskicon-edit {

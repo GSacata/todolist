@@ -4,6 +4,7 @@ import { MOCKEMAILOBJ } from '../misc/mock_emailobj';
 import { EmailmodapiService } from '../services/emailmodapi.service';
 import { EmailModObj } from '../models/emailobj';
 import { Output, EventEmitter } from '@angular/core';
+declare var $: any;
 
 @Component({
   selector: 'app-email-mod',
@@ -18,6 +19,7 @@ import { Output, EventEmitter } from '@angular/core';
 export class EmailModComponent {
   emailobj = MOCKEMAILOBJ;
   selectedEmail: any;
+  tempPassword: string = "";
 
   // @Output() newItemEvent = new EventEmitter<EmailModObj>();
   @Output() newItemEvent = new EventEmitter<EmailModObj>();
@@ -28,7 +30,27 @@ export class EmailModComponent {
 
   addNewItem(value: EmailModObj) {
     this.editEmail(value);
-    this.newItemEvent.emit(value);
+
+    // Tests password format
+    this.emailmodapi.getOneEmailModObj(value).subscribe({
+      next: (data) => {
+        this.selectedEmail = data
+      },
+      error: (error) => { console.log(error) },
+      complete: () => { console.log("Success: GET one email object") }
+    })
+    this.tempPassword = this.selectedEmail.email_password
+    console.log(this.tempPassword)
+    
+    const regex = new RegExp(/[a-z]{4}\s[a-z]{4}\s[a-z]{4}\s[a-z]{4}/);
+    if (regex.test(this.tempPassword)) {
+      this.hidePasswordWarning();
+      $(".emailmod-hint-content").hide(1200);
+      this.newItemEvent.emit(value);
+    } else {
+      this.showPasswordWarning();
+      $(".emailmod-hint-content").show(1200);
+    }
   }
   
   getAllEmailModObj() {
@@ -86,16 +108,38 @@ export class EmailModComponent {
       complete: () => { console.log(`Success: POST reminder email`) }
     })
   }
+
+  showsPassword() {
+    const pswdBox = document.querySelector("#password-input");
+    // console.log(pswdBox)
+    if (pswdBox?.getAttribute('type') == 'password') {
+      pswdBox?.setAttribute('type', 'text')
+    } else {
+      pswdBox?.setAttribute('type', 'password')
+    }
+  }
+
+  showEmailModHint() {
+    $(".emailmod-hint-content").slideToggle(1200);
+  }
+
+  showPasswordWarning() {
+    $(".emailmod-invalid").show();
+  }
+
+  hidePasswordWarning() {
+    $(".emailmod-invalid").hide();
+  }
   
   ngOnInit(): void {
     console.log("Rodou ngOnInit do email-mod")
     console.log(this.selectedEmail)
-    // this.addNewItem(this.selectedEmail);
   }
   
   constructor (private emailmodapi: EmailmodapiService) {
     this.getAllEmailModObj();
     this.getOneEmailModObj(this.emailobj[0])
     this.selectedEmail = {id: 0, email_address: "", email_password: "", email_subject: ""}
+    this.tempPassword = "";
   }
 }
