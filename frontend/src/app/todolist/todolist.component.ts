@@ -40,7 +40,7 @@ export class TodolistComponent {
   }
 
   showTaskDetails(id: number) {
-    $(`#task-${id} > div.task-details`).toggle();
+    $(`#task-${id} > div.task-details`).slideToggle(1200);
     $(`#task-${id} > div.titlebar > div:nth-child(2) > div > span`).toggle();
     $(`#task-${id} > div.titlebar > div:nth-child(2) > div > input`).toggle();
     $(`#task-1 > div.titlebar > div.task-sideicon.taskicon-edit`).toggle();
@@ -48,7 +48,7 @@ export class TodolistComponent {
   }
 
   hideTaskDetails(id: number) {
-    $(`#task-${id} > div.task-details`).toggle();
+    $(`#task-${id} > div.task-details`).slideToggle(1200);
     $(`#task-${id} > div.titlebar > div:nth-child(2) > div > span`).toggle();
     $(`#task-${id} > div.titlebar > div:nth-child(2) > div > input`).toggle();
     $(`#task-1 > div.titlebar > div.task-sideicon.taskicon-edit`).toggle();
