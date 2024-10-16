@@ -4,3 +4,4 @@ localbackup_todolist.rar
 venv
 *.pyc
 __pycache__
+*.code-workspace
